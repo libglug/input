@@ -1,2 +1,2 @@
-# input-plus-plus
+# glug_input
 c++ input library
