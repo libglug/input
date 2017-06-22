@@ -7,7 +7,7 @@ if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
 
 elseif ("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
 
-  set(GLUG_OS_MAC 1)
+  set(GLUG_OS_MACOS 1)
 
   set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
 
