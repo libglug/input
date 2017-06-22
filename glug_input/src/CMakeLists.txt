@@ -31,17 +31,28 @@ if (${GLUG_OS_WIN32})
 
 elseif(${GLUG_OS_MACOS})
 
-  include_directories("/System/Library/Frameworks/Carbon.framework/Frameworks")
+    include_directories("/System/Library/Frameworks/Carbon.framework/Frameworks")
 
-  set(MACOS_MOUSE_ROOT ${INPUT_SRC_ROOT}/mouse/macos)
+    set(MACOS_MOUSE_ROOT ${INPUT_SRC_ROOT}/mouse/macos)
 
-  set(INPUT_PLATFORM_SOURCES
+    set(INPUT_PLATFORM_SOURCES
       ${MACOS_MOUSE_ROOT}/button_macos.cpp
       ${MACOS_MOUSE_ROOT}/mouse_macos.cpp
-  )
+    )
 
-  find_library(APPLE_APPKIT AppKit)
-  set(EXT_LIBS ${APPLE_APPKIT})
+    find_library(APPLE_APPKIT AppKit)
+    set(EXT_LIBS ${APPLE_APPKIT})
+
+elseif(${GLUG_OS_LINUX})
+
+    set(X11_MOUSE_ROOT ${INPUT_SRC_ROOT}/mouse/x11)
+
+    set(INPUT_PLATFORM_SOURCES
+        ${X11_MOUSE_ROOT}/button_x11.cpp
+        ${X11_MOUSE_ROOT}/mouse_x11.cpp
+    )
+
+    set(EXT_LIBS X11 Xi)
 
 endif()
 
