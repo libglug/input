@@ -9,8 +9,7 @@ bool mouse_plat::is_button_pressed(buttons button)
 {
     static unsigned short mask = 1 << 15;
 
-    int b = code_from_button(button);
-    return (GetAsyncKeyState(b) & mask) != 0;
+    return (GetAsyncKeyState(code_from_button(button)) & mask) != 0;
 }
 
 } // namespace glug
