@@ -43,5 +43,18 @@ point mouse_plat::position()
          };
 }
 
+void mouse_plat::move(const point &delta)
+{
+  point curr = position();
+  curr.x += delta.x;
+  curr.y += delta.y;
+
+  warp(curr);
+}
+
+void mouse_plat::warp(const point &new_pos)
+{
+  SetCursorPos(static_cast<LONG>(new_pos.x), static_cast<LONG>(new_pos.y));
+}
 
 } // namespace glug
