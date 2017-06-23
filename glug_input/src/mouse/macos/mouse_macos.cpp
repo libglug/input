@@ -33,5 +33,18 @@ buttons mouse_plat::button_state()
   return state;
 }
 
+point mouse_plat::get_position()
+{
+  CGEventRef event = CGEventCreate(nil);
+  CGPoint cursor = CGEventGetLocation(event);
+  CFRelease(event);
+
+  return {
+          static_cast<long long>(cursor.x),
+          static_cast<long long>(cursor.y),
+         };
+}
+
+
 
 } // namespace glug
