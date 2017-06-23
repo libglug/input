@@ -33,6 +33,19 @@ point mouse_plat::position()
   return mouse_pt;
 }
 
+
+void mouse_plat::move(const point &delta)
+{
+  XWarpPointer(xdisplay, None, None, 0, 0, 0, 0, delta.x, delta.y);
+  XFlush(xdisplay);
+}
+
+void mouse_plat::warp(const point &new_pos)
+{
+  XWarpPointer(xdisplay, None, xroot_window, 0, 0, 0, 0, new_pos.x, new_pos.y);
+  XFlush(xdisplay);
+}
+
 static bool xmouse_state(buttons *button_state, point *pos)
 {
   static double temp;
