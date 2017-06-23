@@ -14,7 +14,7 @@ int main(int, char *[])
   cout << "are left and right pressed? " << mouse::are_buttons_pressed(lr) << endl;
   cout << "are only left and right pressed? " << mouse::only_buttons_pressed(lr) << endl;
 
-  point mouse_pos = mouse::get_position();
+  point mouse_pos = mouse::position();
   cout << "mouse: " << mouse_pos.x << "x" << mouse_pos.y << endl;
 
   return 0;

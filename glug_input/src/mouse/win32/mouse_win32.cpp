@@ -22,7 +22,7 @@ buttons mouse_plat::button_state()
                                                       buttons::mid,
                                                       buttons::right,
                                                       buttons::ex1,
-                                                      buttons::ex2
+                                                      buttons::ex2,
                                                     }};
   buttons state = buttons::none;
 
@@ -33,13 +33,13 @@ buttons mouse_plat::button_state()
   return state;
 }
 
-point mouse_plat::get_position()
+point mouse_plat::position()
 {
   POINT mp;
   GetCursorPos(&mp);
   return {
           mp.x,
-          mp.y
+          mp.y,
          };
 }
 

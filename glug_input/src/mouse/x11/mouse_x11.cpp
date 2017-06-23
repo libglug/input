@@ -26,7 +26,7 @@ buttons mouse_plat::button_state()
   return state;
 }
 
-point mouse_plat::get_position()
+point mouse_plat::position()
 {
   point mouse_pt = {0, 0};
   xmouse_state(nullptr, &mouse_pt);
@@ -79,7 +79,7 @@ buttons xmouse_buttons(XIButtonState *button_mask)
                                                       buttons::mid,
                                                       buttons::right,
                                                       buttons::ex1,
-                                                      buttons::ex2
+                                                      buttons::ex2,
                                                     }};
 
   buttons state = buttons::none;

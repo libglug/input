@@ -26,9 +26,20 @@ buttons mouse::button_state()
   return mouse_plat::button_state();
 }
 
-point mouse::get_position()
+point mouse::position()
 {
-  return mouse_plat::get_position();
+  return mouse_plat::position();
 }
+
+void mouse::move(const point &delta)
+{
+  return mouse_plat::move(delta);
+}
+
+void mouse::warp(const point &new_pos)
+{
+  return mouse_plat::warp(new_pos);
+}
+
 
 } // namespace glug

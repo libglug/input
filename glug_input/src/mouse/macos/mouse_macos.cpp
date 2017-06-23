@@ -22,7 +22,7 @@ buttons mouse_plat::button_state()
                                                        buttons::mid,
                                                        buttons::right,
                                                        buttons::ex1,
-                                                       buttons::ex2
+                                                       buttons::ex2,
                                                      }};
 
   buttons state = buttons::none;
@@ -34,7 +34,7 @@ buttons mouse_plat::button_state()
   return state;
 }
 
-point mouse_plat::get_position()
+point mouse_plat::position()
 {
   CGEventRef event = CGEventCreate(nil);
   CGPoint cursor = CGEventGetLocation(event);
@@ -46,6 +46,24 @@ point mouse_plat::get_position()
          };
 }
 
+void mouse_plat::move(const point &delta)
+{
+  point curr = position();
+  curr.x += delta.x;
+  curr.y += delta.y;
 
+  warp(curr);
+}
+
+void mouse_plat::warp(const point &new_pos)
+{
+  CGPoint pos = {
+                 static_cast<CGFloat>(new_pos.x),
+                 static_cast<CGFloat>(new_pos.y),
+                };
+
+  CGDisplayMoveCursorToPoint(CGMainDisplayID(), pos);
+  CGAssociateMouseAndMouseCursorPosition(true);
+}
 
 } // namespace glug

@@ -18,7 +18,10 @@ public:
 
   static buttons button_state();
 
-  static point get_position();
+  static point position();
+
+  static void move(const point &delta);
+  static void warp(const point &new_pos);
 };
 
 } // namespace glug
