@@ -12,6 +12,7 @@ class GLUG_LIB_LOCAL mouse_plat
 {
 public:
   static bool is_button_pressed(buttons buttons);
+  static buttons button_state();
 
 protected:
   static int code_from_button(buttons buttons);

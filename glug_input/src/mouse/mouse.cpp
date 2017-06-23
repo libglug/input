@@ -23,13 +23,7 @@ bool mouse::only_buttons_pressed(buttons buttons)
 
 buttons mouse::button_state()
 {
-  buttons state = buttons::none;
-
-  for (buttons b = buttons::left; b < buttons::unknown; b <<= 1)
-    if (is_button_pressed(b))
-      state |= b;
-
-  return state;
+  return mouse_plat::button_state();
 }
 
 } // namespace glug

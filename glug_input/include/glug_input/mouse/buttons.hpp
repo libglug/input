@@ -27,11 +27,6 @@ buttons INPUT_LIB_API &operator|= (buttons &lhs, buttons rhs);
 buttons INPUT_LIB_API  operator&  (buttons  lhs, buttons rhs);
 buttons INPUT_LIB_API &operator&= (buttons &lhs, buttons rhs);
 
-buttons INPUT_LIB_API  operator<<  (buttons  buttons, int n);
-buttons INPUT_LIB_API &operator<<= (buttons &buttons, int n);
-buttons INPUT_LIB_API  operator>>  (buttons  buttons, int n);
-buttons INPUT_LIB_API &operator>>= (buttons &buttons, int n);
-
 } // namespace glug
 
 #endif // GLUG_BUTTONS_HPP
