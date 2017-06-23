@@ -16,10 +16,6 @@ public:
   static buttons button_state();
 
   static point get_position();
-
-protected:
-  static int code_from_button(buttons buttons);
-  static buttons button_from_code(int buttons);
 };
 
 } // namespace glug

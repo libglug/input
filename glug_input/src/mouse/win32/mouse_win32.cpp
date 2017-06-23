@@ -1,4 +1,5 @@
 #include "../mouse_plat.hpp"
+#include "../button_util.hpp"
 #include <glug_input/mouse/buttons.hpp>
 
 #include <array>
@@ -11,7 +12,7 @@ bool mouse_plat::is_button_pressed(buttons button)
 {
   static unsigned short mask = 1 << 15;
 
-  return (GetAsyncKeyState(code_from_button(button)) & mask) != 0;
+  return (GetAsyncKeyState(button_util::code_from_button(button)) & mask) != 0;
 }
 
 buttons mouse_plat::button_state()
@@ -36,7 +37,10 @@ point mouse_plat::get_position()
 {
   POINT mp;
   GetCursorPos(&mp);
-  return {mp.x, mp.y};
+  return {
+          mp.x,
+          mp.y
+         };
 }
 
 

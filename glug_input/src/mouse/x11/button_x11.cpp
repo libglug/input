@@ -1,4 +1,4 @@
-#include "../mouse_plat.hpp"
+#include "../button_util.hpp"
 #include <glug_input/mouse/buttons.hpp>
 
 #include <X11/extensions/XInput2.h>
@@ -15,7 +15,7 @@
 namespace glug
 {
 
-int mouse_plat::code_from_button(buttons button)
+int button_util::code_from_button(buttons button)
 {
   switch(button)
   {
@@ -31,7 +31,7 @@ int mouse_plat::code_from_button(buttons button)
   return 0;
 }
 
-buttons mouse_plat::button_from_code(int button)
+buttons button_util::button_from_code(int button)
 {
   switch(button)
   {

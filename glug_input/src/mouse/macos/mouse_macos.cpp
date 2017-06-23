@@ -1,4 +1,5 @@
 #include "../mouse_plat.hpp"
+#include "../button_util.hpp"
 #include <glug_input/mouse/buttons.hpp>
 
 #include <array>
@@ -11,7 +12,7 @@ namespace glug
 bool mouse_plat::is_button_pressed(buttons button)
 {
   return CGEventSourceButtonState(kCGEventSourceStateCombinedSessionState,
-                                  static_cast<CGMouseButton>(code_from_button(button)));
+                                  static_cast<CGMouseButton>(button_util::code_from_button(button)));
 }
 
 buttons mouse_plat::button_state()
