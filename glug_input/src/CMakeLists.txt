@@ -55,9 +55,15 @@ elseif(${GLUG_OS_MACOS})
 
     include_directories("/System/Library/Frameworks/Carbon.framework/Frameworks")
 
+    set(MACOS_KEY_ROOT ${INPUT_SRC_ROOT}/keyboard/macos)
     set(MACOS_MOUSE_ROOT ${INPUT_SRC_ROOT}/mouse/macos)
 
     set(INPUT_PLATFORM_SOURCES
+      ${MACOS_KEY_ROOT}/keyboard_macos.cpp
+      ${MACOS_KEY_ROOT}/key_defs.hpp
+      ${MACOS_KEY_ROOT}/key_macos.cpp
+      ${MACOS_KEY_ROOT}/lock_macos.cpp
+      ${MACOS_KEY_ROOT}/mod_macos.cpp
       ${MACOS_MOUSE_ROOT}/mouse_macos.cpp
       ${MACOS_MOUSE_ROOT}/button_macos.cpp
     )
