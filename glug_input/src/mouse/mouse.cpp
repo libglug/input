@@ -26,8 +26,8 @@ buttons mouse::button_state()
   buttons state = buttons::none;
 
   for (buttons b = buttons::left; b < buttons::unknown; b <<= 1)
-      if (is_button_pressed(b))
-          state |= b;
+    if (is_button_pressed(b))
+      state |= b;
 
   return state;
 }

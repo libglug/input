@@ -5,11 +5,11 @@
 
 #ifdef GLUG_INPUT_EXPORT
 
-    #define INPUT_LIB_API GLUG_LIB_EXPORT
+  #define INPUT_LIB_API GLUG_LIB_EXPORT
 
 #else
 
-    #define INPUT_LIB_API GLUG_LIB_IMPORT
+  #define INPUT_LIB_API GLUG_LIB_IMPORT
 
 #endif
 

@@ -31,7 +31,6 @@ bool mouse_plat::is_button_pressed(buttons button)
   for (int i = button_mask.mask_len; i--;)
     mask |= button_mask.mask[i] << (i * 8);
 
-
   return (code_from_button(button) & mask) != 0;
 }
 
