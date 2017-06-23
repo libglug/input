@@ -2,6 +2,7 @@
 #define GLUG_MOUSE_HPP
 
 #include <glug_input/export.hpp>
+#include <glug_input/mouse/point.hpp>
 
 namespace glug
 {
@@ -16,6 +17,8 @@ public:
   static bool only_buttons_pressed(buttons buttons);
 
   static buttons button_state();
+
+  static point get_position();
 };
 
 } // namespace glug

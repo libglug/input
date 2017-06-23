@@ -8,6 +8,9 @@ set(CONFIG_HEADERS
 
 set(INPUT_HEADERS
     ${INPUT_INC_ROOT}/mouse.hpp
+    ${INPUT_INC_ROOT}/mouse/mouse.hpp
+    ${INPUT_INC_ROOT}/mouse/buttons.hpp
+    ${INPUT_INC_ROOT}/mouse/point.hpp
 )
 
 set(INPUT_SOURCES

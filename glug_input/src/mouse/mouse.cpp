@@ -26,4 +26,9 @@ buttons mouse::button_state()
   return mouse_plat::button_state();
 }
 
+point mouse::get_position()
+{
+  return mouse_plat::get_position();
+}
+
 } // namespace glug

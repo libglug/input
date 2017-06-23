@@ -32,4 +32,12 @@ buttons mouse_plat::button_state()
   return state;
 }
 
+point mouse_plat::get_position()
+{
+  POINT mp;
+  GetCursorPos(&mp);
+  return {mp.x, mp.y};
+}
+
+
 } // namespace glug
