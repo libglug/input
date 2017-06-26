@@ -52,9 +52,6 @@ if (${GLUG_OS_WIN32})
     set(EXT_LIBS User32)
 
 elseif(${GLUG_OS_MACOS})
-
-    include_directories("/System/Library/Frameworks/Carbon.framework/Frameworks")
-
     set(MACOS_KEY_ROOT ${INPUT_SRC_ROOT}/keyboard/macos)
     set(MACOS_MOUSE_ROOT ${INPUT_SRC_ROOT}/mouse/macos)
 
@@ -68,14 +65,20 @@ elseif(${GLUG_OS_MACOS})
       ${MACOS_MOUSE_ROOT}/button_macos.cpp
     )
 
+    include_directories("/System/Library/Frameworks/Carbon.framework/Frameworks")
     find_library(APPLE_APPKIT AppKit)
     set(EXT_LIBS ${APPLE_APPKIT})
 
 elseif(${GLUG_OS_LINUX})
-
+    set(X11_KEY_ROOT ${INPUT_SRC_ROOT}/keyboard/x11)
     set(X11_MOUSE_ROOT ${INPUT_SRC_ROOT}/mouse/x11)
 
     set(INPUT_PLATFORM_SOURCES
+        ${X11_KEY_ROOT}/keyboard_x11.cpp
+        ${X11_KEY_ROOT}/key_defs.hpp
+        ${X11_KEY_ROOT}/key_x11.cpp
+        ${X11_KEY_ROOT}/lock_x11.cpp
+        ${X11_KEY_ROOT}/mod_x11.cpp
         ${X11_MOUSE_ROOT}/mouse_x11.cpp
         ${X11_MOUSE_ROOT}/button_x11.cpp
     )
