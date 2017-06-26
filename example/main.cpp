@@ -1,4 +1,5 @@
 #include <glug_input/mouse.hpp>
+#include <glug_input/keyboard.hpp>
 
 #include <iostream>
 
@@ -16,6 +17,10 @@ int main(int, char *[])
 
   point mouse_pos = mouse::position();
   cout << "mouse: " << mouse_pos.x << "x" << mouse_pos.y << endl;
+
+  cout << "is right shfit pressed? " << keyboard::is_key_pressed(keys::shift_r) << endl;
+  cout << "current active keyboard modifiers: " << static_cast<int>(keyboard::mod_state()) << endl;
+  cout << "is caps lock active? " << keyboard::is_lock_toggled(locks::caps) << endl;
 
   return 0;
 }
