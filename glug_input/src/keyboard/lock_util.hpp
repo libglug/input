@@ -3,6 +3,8 @@
 
 #include <glug_input/export.hpp>
 
+#include <array>
+
 namespace glug
 {
 
@@ -13,6 +15,8 @@ class GLUG_LIB_LOCAL lock_util
 public:
   static int   code_from_lock(locks lock);
   static locks lock_from_code(int lock);
+
+  static const std::array<locks, 3> lock_list;
 };
 
 } // namespace glug

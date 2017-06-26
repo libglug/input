@@ -9,10 +9,10 @@ namespace glug
 enum class locks
 {
   none,
-  caps   = 1 << 0,
-  num    = 1 << 1,
-  scroll = 1 << 2,
-  unknown
+  caps    = 1 << 0,
+  num     = 1 << 1,
+  scroll  = 1 << 2,
+  unknown = 1 << 3,
 };
 
 bool  INPUT_LIB_API operator! (locks b);

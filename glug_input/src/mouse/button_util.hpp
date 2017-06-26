@@ -3,6 +3,8 @@
 
 #include <glug_input/export.hpp>
 
+#include <array>
+
 namespace glug
 {
 
@@ -13,6 +15,8 @@ class GLUG_LIB_LOCAL button_util
 public:
   static int code_from_button(buttons button);
   static buttons button_from_code(int button);
+
+  static const std::array<buttons, 5> button_list;
 };
 
 } // namespace glug

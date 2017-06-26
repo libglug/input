@@ -1,17 +1,20 @@
+set(GLUG_PROJ_NAME glug_input)
+
 set(INPUT_SRC_ROOT ${GLUG_INPUT_ROOT}/src)
 set(INPUT_INC_ROOT ${IPP_INCLUDE_ROOT}/glug_input)
 
-set(CONFIG_HEADERS
+set(UTIL_HEADERS
     ${INPUT_INC_ROOT}/config.hpp
     ${INPUT_INC_ROOT}/export.hpp
+    ${INPUT_INC_ROOT}/util/significant_bit.hpp
 )
 
 set(INPUT_HEADERS
     ${INPUT_INC_ROOT}/keyboard.hpp
     ${INPUT_INC_ROOT}/keyboard/keyboard.hpp
     ${INPUT_INC_ROOT}/keyboard/keys.hpp
-    ${INPUT_INC_ROOT}/keyboard/mods.hpp
     ${INPUT_INC_ROOT}/keyboard/locks.hpp
+    ${INPUT_INC_ROOT}/keyboard/mods.hpp
     ${INPUT_INC_ROOT}/mouse.hpp
     ${INPUT_INC_ROOT}/mouse/mouse.hpp
     ${INPUT_INC_ROOT}/mouse/buttons.hpp
@@ -20,10 +23,14 @@ set(INPUT_HEADERS
 
 set(INPUT_SOURCES
     ${INPUT_SRC_ROOT}/keyboard/keyboard.cpp
-    ${INPUT_SRC_ROOT}/keyboard/mods.cpp
+    ${INPUT_SRC_ROOT}/keyboard/key_util.cpp
+    ${INPUT_SRC_ROOT}/keyboard/lock_util.cpp
+    ${INPUT_SRC_ROOT}/keyboard/mod_util.cpp
     ${INPUT_SRC_ROOT}/keyboard/locks.cpp
+    ${INPUT_SRC_ROOT}/keyboard/mods.cpp
     ${INPUT_SRC_ROOT}/mouse/mouse.cpp
     ${INPUT_SRC_ROOT}/mouse/buttons.cpp
+    ${INPUT_SRC_ROOT}/mouse/button_util.cpp
 )
 
 set(INPUT_PLATFORM_HEADERS
@@ -90,13 +97,13 @@ endif()
 add_definitions(-DGLUG_INPUT_EXPORT)
 
 add_library(
-    glug_input
+    ${GLUG_PROJ_NAME}
     SHARED
-    ${CONFIG_HEADERS}
+    ${UTIL_HEADERS}
     ${INPUT_HEADERS}
     ${INPUT_SOURCES}
     ${INPUT_PLATFORM_HEADERS}
     ${INPUT_PLATFORM_SOURCES}
 )
 
-target_link_libraries(glug_input ${EXT_LIBS})
+target_link_libraries(${GLUG_PROJ_NAME} ${EXT_LIBS})

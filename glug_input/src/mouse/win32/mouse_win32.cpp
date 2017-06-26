@@ -2,7 +2,6 @@
 #include "../button_util.hpp"
 #include <glug_input/mouse/buttons.hpp>
 
-#include <array>
 #include <Windows.h>
 
 namespace glug
@@ -17,16 +16,9 @@ bool mouse_plat::is_button_pressed(buttons button)
 
 buttons mouse_plat::button_state()
 {
-  static const std::array<buttons, 5> button_list = {{
-                                                      buttons::left,
-                                                      buttons::mid,
-                                                      buttons::right,
-                                                      buttons::ex1,
-                                                      buttons::ex2,
-                                                    }};
   buttons state = buttons::none;
 
-  for (const auto button: button_list)
+  for (const auto button: button_util::button_list)
     if (is_button_pressed(button))
         state |= button;
 

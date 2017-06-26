@@ -9,17 +9,16 @@ namespace glug
 enum class buttons
 {
   none,
-  left  = 1 << 0,
-  mid   = 1 << 1,
-  right = 1 << 2,
-  ex1   = 1 << 3,
-  ex2   = 1 << 4,
-  unknown,
+  left    = 1 << 0,
+  mid     = 1 << 1,
+  right   = 1 << 2,
+  ex1     = 1 << 3,
+  ex2     = 1 << 4,
+  unknown = 1 << 5,
 };
 
-bool INPUT_LIB_API operator! (buttons b);
+bool    INPUT_LIB_API operator! (buttons b);
 buttons INPUT_LIB_API operator~ (buttons b);
-
 
 buttons INPUT_LIB_API  operator|  (buttons  lhs, buttons rhs);
 buttons INPUT_LIB_API &operator|= (buttons &lhs, buttons rhs);

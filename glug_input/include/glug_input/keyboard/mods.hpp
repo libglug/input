@@ -9,11 +9,11 @@ namespace glug
 enum class mods
 {
   none,
-  shift = 1 << 0,
-  alt   = 1 << 1,
-  ctrl  = 1 << 2,
-  super = 1 << 3,
-  unknown
+  shift   = 1 << 0,
+  alt     = 1 << 1,
+  ctrl    = 1 << 2,
+  super   = 1 << 3,
+  unknown = 1 << 4,
 };
 
 bool INPUT_LIB_API operator! (mods b);

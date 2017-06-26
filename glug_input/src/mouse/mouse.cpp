@@ -41,5 +41,4 @@ void mouse::warp(const point &new_pos)
   return mouse_plat::warp(new_pos);
 }
 
-
 } // namespace glug
