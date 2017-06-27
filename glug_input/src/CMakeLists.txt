@@ -42,7 +42,7 @@ set(INPUT_PLATFORM_HEADERS
     ${INPUT_SRC_ROOT}/mouse/button_util.hpp
 )
 
-if (${GLUG_OS_WIN32})
+if(${GLUG_OS_WIN32})
     set(WIN32_KEY_ROOT ${INPUT_SRC_ROOT}/keyboard/win32)
     set(WIN32_MOUSE_ROOT ${INPUT_SRC_ROOT}/mouse/win32)
 

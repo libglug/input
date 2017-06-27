@@ -13,7 +13,7 @@ namespace glug
 
 bool get_key_state(int vk_key)
 {
-  static SHORT keydown_mask = static_cast<SHORT>(1 << 15);
+  static unsigned short keydown_mask = static_cast<unsigned short>(1 << 15);
   return (GetAsyncKeyState(vk_key) & keydown_mask) != 0;
 }
 
