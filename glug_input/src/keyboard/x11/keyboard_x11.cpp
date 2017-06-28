@@ -2,6 +2,7 @@
 #include "../key_util.hpp"
 #include "../mod_util.hpp"
 #include "../lock_util.hpp"
+
 #include <glug_input/keyboard/locks.hpp>
 #include <glug_input/keyboard/mods.hpp>
 

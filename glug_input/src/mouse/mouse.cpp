@@ -1,5 +1,6 @@
 #include <glug_input/mouse/mouse.hpp>
 #include <glug_input/mouse/buttons.hpp>
+#include <glug_input/mouse/point.hpp>
 
 #include "mouse_plat.hpp"
 

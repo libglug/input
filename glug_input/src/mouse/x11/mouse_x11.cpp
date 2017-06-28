@@ -1,6 +1,8 @@
 #include "../mouse_plat.hpp"
 #include "../button_util.hpp"
+
 #include <glug_input/mouse/buttons.hpp>
+#include <glug_input/mouse/point.hpp>
 
 #include <array>
 #include <X11/extensions/XInput2.h>

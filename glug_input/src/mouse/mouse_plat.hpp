@@ -2,11 +2,11 @@
 #define GLUG_MOUSE_PLAT_HPP
 
 #include <glug_input/export.hpp>
-#include <glug_input/mouse/point.hpp>
 
 namespace glug
 {
 
+struct point;
 enum class buttons;
 
 class GLUG_LIB_LOCAL mouse_plat
