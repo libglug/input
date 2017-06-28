@@ -42,6 +42,18 @@ set(INPUT_PLATFORM_HEADERS
     ${INPUT_SRC_ROOT}/mouse/button_util.hpp
 )
 
+set(INPUT_EVENT_HEADERS
+    ${INPUT_INC_ROOT}/event/event_queue.hpp
+    ${INPUT_INC_ROOT}/event/event_type.hpp
+    ${INPUT_INC_ROOT}/event/event.hpp
+    ${INPUT_INC_ROOT}/event/key_event.hpp
+)
+
+set(INPUT_EVENT_SOURCES
+    ${INPUT_SRC_ROOT}/event/event_queue.cpp
+    ${INPUT_SRC_ROOT}/event/event_type.cpp
+)
+
 if(${GLUG_OS_WIN32})
     set(WIN32_KEY_ROOT ${INPUT_SRC_ROOT}/keyboard/win32)
     set(WIN32_MOUSE_ROOT ${INPUT_SRC_ROOT}/mouse/win32)
@@ -104,6 +116,8 @@ add_library(
     ${INPUT_SOURCES}
     ${INPUT_PLATFORM_HEADERS}
     ${INPUT_PLATFORM_SOURCES}
+    ${INPUT_EVENT_HEADERS}
+    ${INPUT_EVENT_SOURCES}
 )
 
 target_link_libraries(${GLUG_PROJ_NAME} ${EXT_LIBS})

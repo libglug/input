@@ -1,5 +1,7 @@
 #include <glug_input/mouse.hpp>
 #include <glug_input/keyboard.hpp>
+#include <glug_input/event/event_queue.hpp>
+#include <glug_input/event/key_event.hpp>
 
 #include <iostream>
 
@@ -9,6 +11,10 @@ using namespace glug;
 int main(int, char *[])
 {
   buttons lr = buttons::left | buttons::right;
+
+  key_event event;
+  int ev;
+  event_queue::wait_for_event(event);
 
   cout << boolalpha;
   cout << "is left pressed? " << mouse::is_button_pressed(buttons::left) << endl;
