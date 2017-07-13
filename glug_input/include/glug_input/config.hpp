@@ -7,7 +7,7 @@
 
 #elif defined (__linux__)
 
-    #define GLUG_OS_LINUX
+  #define GLUG_OS_LINUX
 
 #elif defined (__APPLE__) && defined (__MACH__)
   #include <TargetConditionals.h>

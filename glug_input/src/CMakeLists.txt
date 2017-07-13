@@ -10,6 +10,9 @@ set(UTIL_HEADERS
 )
 
 set(INPUT_HEADERS
+    ${INPUT_INC_ROOT}/joystick.hpp
+    ${INPUT_INC_ROOT}/joystick/joystick.hpp
+    ${INPUT_INC_ROOT}/joystick/scan_ops.hpp
     ${INPUT_INC_ROOT}/keyboard.hpp
     ${INPUT_INC_ROOT}/keyboard/keyboard.hpp
     ${INPUT_INC_ROOT}/keyboard/keys.hpp
@@ -22,6 +25,7 @@ set(INPUT_HEADERS
 )
 
 set(INPUT_SOURCES
+    ${INPUT_SRC_ROOT}/joystick/joystick.cpp
     ${INPUT_SRC_ROOT}/keyboard/keyboard.cpp
     ${INPUT_SRC_ROOT}/keyboard/key_util.cpp
     ${INPUT_SRC_ROOT}/keyboard/lock_util.cpp
@@ -33,7 +37,9 @@ set(INPUT_SOURCES
     ${INPUT_SRC_ROOT}/mouse/button_util.cpp
 )
 
-set(INPUT_PLATFORM_HEADERS
+set(INPUT_IMPL_FILES
+    ${INPUT_SRC_ROOT}/joystick/joystick_impl.hpp
+    ${INPUT_SRC_ROOT}/joystick/joystick_impl.cpp
     ${INPUT_SRC_ROOT}/keyboard/keyboard_plat.hpp
     ${INPUT_SRC_ROOT}/keyboard/key_util.hpp
     ${INPUT_SRC_ROOT}/keyboard/lock_util.hpp
@@ -57,10 +63,14 @@ set(WIN32_SOURCES
 )
 
 # Mac OS sources
+set(MACOS_JOY_ROOT ${INPUT_SRC_ROOT}/joystick/macos)
 set(MACOS_KEY_ROOT ${INPUT_SRC_ROOT}/keyboard/macos)
 set(MACOS_MOUSE_ROOT ${INPUT_SRC_ROOT}/mouse/macos)
 
 set(MACOS_SOURCES
+    ${MACOS_JOY_ROOT}/joystick_macos.hpp
+    ${MACOS_JOY_ROOT}/joystick_macos.cpp
+    ${MACOS_JOY_ROOT}/scoped_cf.hpp
     ${MACOS_KEY_ROOT}/keyboard_macos.cpp
     ${MACOS_KEY_ROOT}/key_defs.hpp
     ${MACOS_KEY_ROOT}/key_macos.cpp
@@ -96,7 +106,8 @@ elseif(${GLUG_OS_MACOS})
     set(INPUT_PLATFORM_SOURCES ${MACOS_SOURCES})
     include_directories("/System/Library/Frameworks/Carbon.framework/Frameworks")
     find_library(APPLE_APPKIT AppKit)
-    set(EXT_LIBS ${APPLE_APPKIT})
+    find_library(APPLE_IOKIT IoKit)
+    set(EXT_LIBS ${APPLE_APPKIT} ${APPLE_IOKIT})
 
 elseif(${GLUG_OS_LINUX})
 
@@ -119,7 +130,7 @@ add_library(
     ${UTIL_HEADERS}
     ${INPUT_HEADERS}
     ${INPUT_SOURCES}
-    ${INPUT_PLATFORM_HEADERS}
+    ${INPUT_IMPL_FILES}
     ${INPUT_PLATFORM_SOURCES}
     ${WIN32_SOURCES}
     ${MACOS_SOURCES}

@@ -1,5 +1,6 @@
 #include <glug_input/mouse.hpp>
 #include <glug_input/keyboard.hpp>
+#include <glug_input/joystick.hpp>
 
 #include <iostream>
 
@@ -25,6 +26,8 @@ int main(int, char *[])
   keystate k = keyboard::key_state();
   cout << "is 'k' pressed? " << !!(k.mask[(int)keys::k / 8] & (1 << (int)keys::k % 8)) << endl;
 
- return 0;
+  cout << "joystick count: " << joystick::rescan() << endl;
+
+  return 0;
 }
 
