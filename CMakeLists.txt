@@ -9,8 +9,8 @@ set(IPP_VERSION_PATCH 0)
 include(cmake/os.cmake)
 
 set(GLUG_INPUT_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/glug_input)
-set(IPP_INCLUDE_ROOT ${GLUG_INPUT_ROOT}/include)
-include_directories(${IPP_INCLUDE_ROOT})
+set(GLUG_INCLUDE_ROOT ${GLUG_INPUT_ROOT}/include)
+include_directories(${GLUG_INCLUDE_ROOT})
 
 set(LIB_DIR ${PROJECT_BINARY_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${LIB_DIR})
