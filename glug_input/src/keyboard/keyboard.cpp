@@ -1,4 +1,5 @@
 #include <glug_input/keyboard/keyboard.hpp>
+#include <glug_input/keyboard/keys.hpp>
 #include <glug_input/keyboard/mods.hpp>
 #include <glug_input/keyboard/locks.hpp>
 
@@ -12,9 +13,11 @@ bool keyboard::is_key_pressed(keys key)
   return keyboard_plat::is_key_pressed(key);
 }
 
-std::vector<bool> keyboard::key_state()
+keystate keyboard::key_state()
 {
-  return keyboard_plat::key_state();
+  keystate k;
+  keyboard_plat::key_state(k.mask);
+  return k;
 }
 
 bool keyboard::is_mod_active(mods mod)

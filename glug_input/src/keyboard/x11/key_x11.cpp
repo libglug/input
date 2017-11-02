@@ -2,8 +2,6 @@
 #include "key_defs.hpp"
 #include <glug_input/keyboard/keys.hpp>
 
-#include <X11/Xutil.h>
-
 namespace glug
 {
 

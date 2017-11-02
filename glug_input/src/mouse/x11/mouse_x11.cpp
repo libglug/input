@@ -4,7 +4,6 @@
 #include <glug_input/mouse/buttons.hpp>
 #include <glug_input/mouse/point.hpp>
 
-#include <array>
 #include <X11/extensions/XInput2.h>
 
 namespace glug
@@ -34,7 +33,6 @@ point mouse_plat::position()
   xmouse_state(nullptr, &mouse_pt);
   return mouse_pt;
 }
-
 
 void mouse_plat::move(const point &delta)
 {
@@ -89,16 +87,9 @@ buttons xmouse_buttons(XIButtonState *button_mask)
   for (int i = button_mask->mask_len; i--;)
     xbuttons |= button_mask->mask[i] << (i * 8);
 
-  static const std::array<buttons, 5> button_list = {{
-                                                      buttons::left,
-                                                      buttons::mid,
-                                                      buttons::right,
-                                                      buttons::ex1,
-                                                      buttons::ex2,
-                                                    }};
-
   buttons state = buttons::none;
-  for (const buttons button: button_list)
+  buttons button = static_cast<buttons>(static_cast<int>(buttons::none) + 1);
+  for(; button < buttons::unknown; button <<= 1)
     if (button_util::code_from_button(button) & xbuttons)
         state |= button;
 

@@ -3,8 +3,6 @@
 
 #include <glug_input/export.hpp>
 
-#include <array>
-
 namespace glug
 {
 
@@ -16,8 +14,11 @@ public:
   static int  code_from_key(keys key);
   static keys key_from_code(int key);
 
-  static const std::array<keys, 101> key_list;
+  static void set_key_state(char *state, keys key, bool active);
 };
+
+bool GLUG_LIB_LOCAL operator< (keys &lhs, keys &rhs);
+keys GLUG_LIB_LOCAL operator++ (keys &key, int);
 
 } // namespace glug
 

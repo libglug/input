@@ -20,7 +20,8 @@ buttons mouse_plat::button_state()
 {
   buttons state = buttons::none;
 
-  for (const auto button: button_util::button_list)
+  buttons button = static_cast<buttons>(static_cast<int>(buttons::none) + 1);
+  for(; button < buttons::unknown; button <<= 1)
     if (is_button_pressed(button))
         state |= button;
 

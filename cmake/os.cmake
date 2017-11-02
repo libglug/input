@@ -1,4 +1,4 @@
-# enable c++11, set Linux rpath
+# enable c++11, set Mac OS/Linux rpath
 if("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
 
     set(GLUG_OS_WIN32 TRUE)
@@ -14,6 +14,7 @@ elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
     set(GLUG_OS_MACOS TRUE)
 
     set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
+    set(CMAKE_MACOSX_RPATH ".")
 
 elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
 

@@ -22,5 +22,9 @@ int main(int, char *[])
   cout << "current active keyboard modifiers: " << static_cast<int>(keyboard::mod_state()) << endl;
   cout << "is caps lock active? " << keyboard::is_lock_toggled(locks::caps) << endl;
 
-  return 0;
+  keystate k = keyboard::key_state();
+  cout << "is 'k' pressed? " << !!(k.mask[(int)keys::k / 8] & (1 << (int)keys::k % 8)) << endl;
+
+ return 0;
 }
+

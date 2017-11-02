@@ -16,8 +16,8 @@ enum class mods
   unknown = 1 << 4,
 };
 
-bool INPUT_LIB_API operator! (mods b);
-mods INPUT_LIB_API operator~ (mods b);
+bool INPUT_LIB_API operator! (mods mod);
+mods INPUT_LIB_API operator~ (mods mod);
 
 mods INPUT_LIB_API  operator|  (mods  lhs, mods rhs);
 mods INPUT_LIB_API &operator|= (mods &lhs, mods rhs);

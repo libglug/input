@@ -4,7 +4,6 @@
 #include <glug_input/mouse/buttons.hpp>
 #include <glug_input/mouse/point.hpp>
 
-#include <array>
 #include <CoreGraphics/CGEventSource.h>
 #include <CoreGraphics/CGEvent.h>
 
@@ -19,17 +18,10 @@ bool mouse_plat::is_button_pressed(buttons button)
 
 buttons mouse_plat::button_state()
 {
-  static const std::array<buttons, 5> button_list = {{
-                                                       buttons::left,
-                                                       buttons::mid,
-                                                       buttons::right,
-                                                       buttons::ex1,
-                                                       buttons::ex2,
-                                                     }};
-
   buttons state = buttons::none;
 
-  for (const auto button: button_list)
+  buttons button = static_cast<buttons>(static_cast<int>(buttons::none) + 1);
+  for(; button < buttons::unknown; button <<= 1)
     if (is_button_pressed(button))
       state |= button;
 

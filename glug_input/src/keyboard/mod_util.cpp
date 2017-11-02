@@ -1,18 +1,18 @@
 #include "mod_util.hpp"
 #include <glug_input/keyboard/mods.hpp>
 
-#include <glug_input/util/significant_bit.hpp>
-
 namespace glug
 {
 
-static const size_t mod_count = significant_bit<static_cast<size_t>(mods::unknown) - 1>::value;
-const std::array<mods, mod_count> mod_util::mod_list =
-{{
-  mods::shift,
-  mods::alt,
-  mods::ctrl,
-  mods::super,
-}};
+bool operator< (mods &lhs, mods &rhs)
+{
+  return static_cast<int>(lhs) < static_cast<int>(rhs);
+}
+
+mods &operator<<= (mods &mod, int n)
+{
+  *reinterpret_cast<int *>(&mod) <<= n;
+  return mod;
+}
 
 } // namespace glug

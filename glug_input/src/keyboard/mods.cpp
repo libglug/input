@@ -3,14 +3,14 @@
 namespace glug
 {
 
-bool operator! (mods b)
+bool operator! (mods mod)
 {
-  return b == mods::none;
+  return mod == mods::none;
 }
 
-mods operator~ (mods b)
+mods operator~ (mods mod)
 {
-  return static_cast<mods>(~static_cast<int>(b));
+  return static_cast<mods>(~static_cast<int>(mod));
 }
 
 mods operator| (mods lhs, mods rhs)

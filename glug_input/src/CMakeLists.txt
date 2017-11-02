@@ -7,7 +7,6 @@ set(INPUT_INC_ROOT ${GLUG_INCLUDE_ROOT}/glug_input)
 set(UTIL_HEADERS
     ${INPUT_INC_ROOT}/config.hpp
     ${INPUT_INC_ROOT}/export.hpp
-    ${INPUT_INC_ROOT}/util/significant_bit.hpp
 )
 
 set(INPUT_HEADERS
@@ -65,6 +64,7 @@ set(MACOS_SOURCES
     ${MACOS_KEY_ROOT}/keyboard_macos.cpp
     ${MACOS_KEY_ROOT}/key_defs.hpp
     ${MACOS_KEY_ROOT}/key_macos.cpp
+    ${MACOS_KEY_ROOT}/lock_defs.hpp
     ${MACOS_KEY_ROOT}/lock_macos.cpp
     ${MACOS_KEY_ROOT}/mod_macos.cpp
     ${MACOS_MOUSE_ROOT}/mouse_macos.cpp

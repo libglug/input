@@ -15,8 +15,8 @@ enum class locks
   unknown = 1 << 3,
 };
 
-bool  INPUT_LIB_API operator! (locks b);
-locks INPUT_LIB_API operator~ (locks b);
+bool  INPUT_LIB_API operator! (locks lock);
+locks INPUT_LIB_API operator~ (locks lock);
 
 locks INPUT_LIB_API  operator|  (locks  lhs, locks rhs);
 locks INPUT_LIB_API &operator|= (locks &lhs, locks rhs);

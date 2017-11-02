@@ -107,7 +107,12 @@ enum class keys
   num_mult,
   num_div,
   num_dec,
-  unknown
+  unknown,
+};
+
+struct keystate
+{
+  char mask[static_cast<int>(keys::unknown) / 8 + 1];
 };
 
 } // namespace glug

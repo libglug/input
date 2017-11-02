@@ -12,7 +12,7 @@
 namespace glug
 {
 
-bool get_key_state(int vk_key)
+static bool get_key_state(int vk_key)
 {
   static unsigned short keydown_mask = static_cast<unsigned short>(1 << 15);
   return (GetAsyncKeyState(vk_key) & keydown_mask) != 0;
@@ -23,13 +23,10 @@ bool keyboard_plat::is_key_pressed(keys key)
   return get_key_state(key_util::code_from_key(key));
 }
 
-std::vector<bool> &keyboard_plat::key_state()
+void keyboard_plat::key_state(char *state)
 {
-  static std::vector<bool> state(key_util::key_list.size());
-  for (const keys key: key_util::key_list)
-    state[static_cast<size_t>(key)] = is_key_pressed(key);
-
-  return state;
+  for (keys key = keys::none; key < keys::unknown; key++)
+    key_util::set_key_state(state, key, is_key_pressed(key));
 }
 
 bool keyboard_plat::is_mod_pressed(mods mod)
@@ -43,7 +40,7 @@ bool keyboard_plat::is_mod_pressed(mods mod)
 mods keyboard_plat::mod_state()
 {
   mods mod_state = mods::none;
-  for (const mods mod: mod_util::mod_list)
+  for (mods mod = static_cast<mods>(static_cast<int>(mods::none) + 1); mod < mods::unknown; mod <<= 1)
     if (is_mod_pressed(mod))
       mod_state |= mod;
 
@@ -59,7 +56,7 @@ bool keyboard_plat::is_lock_toggled(locks lock)
 locks keyboard_plat::lock_state()
 {
   locks lock_state = locks::none;
-  for (const locks lock: lock_util::lock_list)
+  for (locks lock = static_cast<locks>(static_cast<int>(locks::none) + 1); lock < locks::unknown; lock <<= 1)
     if (is_lock_toggled(lock))
       lock_state |= lock;
 

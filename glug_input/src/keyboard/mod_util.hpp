@@ -3,8 +3,6 @@
 
 #include <glug_input/export.hpp>
 
-#include <array>
-
 namespace glug
 {
 
@@ -15,9 +13,10 @@ class GLUG_LIB_LOCAL mod_util
 public:
   static int  code_from_mod(mods mod);
   static mods mod_from_code(int mod);
-
-  static const std::array<mods, 4> mod_list;
 };
+
+bool GLUG_LIB_LOCAL operator< (mods &lhs, mods &rhs);
+mods GLUG_LIB_LOCAL &operator<<= (mods &mod, int n);
 
 } // namespace glug
 

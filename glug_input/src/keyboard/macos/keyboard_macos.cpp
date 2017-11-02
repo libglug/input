@@ -26,13 +26,10 @@ bool keyboard_plat::is_key_pressed(keys key)
   return CGEventSourceKeyState(kCGEventSourceStateCombinedSessionState, key_util::code_from_key(key));
 }
 
-std::vector<bool> &keyboard_plat::key_state()
+void keyboard_plat::key_state(char *state)
 {
-  static std::vector<bool> state(key_util::key_list.size());
-  for (const keys key: key_util::key_list)
-    state[static_cast<size_t>(key)] = is_key_pressed(key);
-
-  return state;
+  for (keys key = keys::none; key < keys::unknown; key++)
+    key_util::set_key_state(state, key, is_key_pressed(key));
 }
 
 bool keyboard_plat::is_mod_pressed(mods mod)
@@ -44,12 +41,12 @@ mods keyboard_plat::mod_state()
 {
   CGEventFlags modifiers = CGEventSourceFlagsState(kCGEventSourceStateCombinedSessionState);
 
-  mods m = mods::none;
-  for(const mods mod: mod_util::mod_list)
+  mods mod_state = mods::none;
+  for (mods mod = static_cast<mods>(static_cast<int>(mods::none) + 1); mod < mods::unknown; mod <<= 1)
     if (modifiers & mod_util::code_from_mod(mod))
-      m |= mod;
+      mod_state |= mod;
 
-  return m;
+  return mod_state;
 }
 
 bool keyboard_plat::is_lock_toggled(locks lock)

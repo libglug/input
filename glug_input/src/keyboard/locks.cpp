@@ -3,14 +3,14 @@
 namespace glug
 {
 
-bool operator! (locks b)
+bool operator! (locks lock)
 {
-  return b == locks::none;
+  return lock == locks::none;
 }
 
-locks operator~ (locks b)
+locks operator~ (locks lock)
 {
-  return static_cast<locks>(~static_cast<int>(b));
+  return static_cast<locks>(~static_cast<int>(lock));
 }
 
 locks operator| (locks lhs, locks rhs)

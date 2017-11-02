@@ -3,8 +3,6 @@
 
 #include <glug_input/export.hpp>
 
-#include <vector>
-
 namespace glug
 {
 
@@ -16,7 +14,7 @@ class GLUG_LIB_LOCAL keyboard_plat
 {
 public:
   static bool is_key_pressed(keys key);
-  static std::vector<bool> &key_state();
+  static void key_state(char *state);
 
   static bool is_mod_pressed(mods mod);
   static mods mod_state();
