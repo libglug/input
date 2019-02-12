@@ -7,26 +7,38 @@
 #include <glug_input/keyboard/locks.h>
 #include <glug_input/keyboard/mods.h>
 
-#include <X11/Xutil.h>
+#include <X11/extensions/XInput2.h>
 
 #define KEYBOARDMAPSIZE 32
 
 static Display *get_display()
 {
     static Display *xdisplay = NULL;
+    static int xinput_op;
+    static int event, error;
 
-    if (xdisplay) return xdisplay;
+    if (!xdisplay)
+    {
+        xdisplay = XOpenDisplay(NULL);
 
-    xdisplay = XOpenDisplay(NULL);
+        // TODO: error reporting/handling
+        XQueryExtension(get_display(), "XInputExtension", &xinput_op, &event, &error);
+
+        int major = 2, minor = 2;
+        XIQueryVersion(get_display(), &major, &minor);
+    }
+
     return xdisplay;
 }
 
 static Window root_window()
 {
     static Window xroot_window = 0;
-    if (!get_display() || xroot_window) return xroot_window;
 
-    return XDefaultRootWindow(get_display());
+    if (!xroot_window && get_display())
+        return xroot_window = XDefaultRootWindow(get_display());
+
+    return xroot_window;
 }
 
 static int check_key(char *xglug_key_map, enum keys key)
@@ -71,8 +83,8 @@ enum mods mod_state()
                   &modifiers);
 
     for (mod = glug_mod_none + 1; mod < glug_mod_unknown; mod <<= 1)
-    if (modifiers & code_from_mod(mod))
-        mod_state |= mod;
+        if (modifiers & code_from_mod(mod))
+            mod_state |= mod;
 
     return mod_state;
 }

@@ -28,7 +28,7 @@ static Display *get_display()
 static Window root_window()
 {
     static Window xroot_window = 0;
-    if (get_display() && !xroot_window)
+    if (!xroot_window && get_display())
         xroot_window = XDefaultRootWindow(get_display());
 
     return xroot_window;
@@ -111,7 +111,7 @@ enum buttons xmouse_buttons(XIButtonState *button_mask)
     for (int i = button_mask->mask_len; i--;)
         xbuttons |= button_mask->mask[i] << (i * 8);
 
-    for(btn = glug_btn_none + 1; btn < glug_btn_unknown; btn <<= 1)
+    for (btn = glug_btn_none + 1; btn < glug_btn_unknown; btn <<= 1)
         if (code_from_button(btn) & xbuttons)
             btn_state |= btn;
 

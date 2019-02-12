@@ -17,7 +17,7 @@ enum buttons button_state()
 {
     enum buttons btn, btn_state = glug_btn_none;
 
-    for(btn = glug_btn_none + 1; btn < glug_btn_unknown; btn <<= 1)
+    for (btn = glug_btn_none + 1; btn < glug_btn_unknown; btn <<= 1)
         if (is_button_pressed(btn))
             btn_state |= btn;
 
