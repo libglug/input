@@ -1,23 +1,9 @@
-#ifndef GLUG_MOD_UTIL_HPP
-#define GLUG_MOD_UTIL_HPP
+#ifndef GLUG_MOD_UTIL_H
+#define GLUG_MOD_UTIL_H
 
-#include <glug_input/export.hpp>
+#include <glug_input/keyboard/mods.hpp>
 
-namespace glug
-{
+int       code_from_mod(enum mods mod);
+enum mods mod_from_code(int mod);
 
-enum class mods;
-
-class GLUG_LIB_LOCAL mod_util
-{
-public:
-  static int  code_from_mod(mods mod);
-  static mods mod_from_code(int mod);
-};
-
-bool GLUG_LIB_LOCAL operator< (mods &lhs, mods &rhs);
-mods GLUG_LIB_LOCAL &operator<<= (mods &mod, int n);
-
-} // namespace glug
-
-#endif // GLUG_MOD_UTIL_HPP
+#endif // GLUG_MOD_UTIL_H

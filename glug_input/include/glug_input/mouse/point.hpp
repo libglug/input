@@ -1,14 +1,9 @@
-#ifndef GLUG_POINT_HPP
-#define GLUG_POINT_HPP
-
-namespace glug
-{
+#ifndef GLUG_POINT_H
+#define GLUG_POINT_H
 
 struct point
 {
-  long long x, y;
+    int x, y;
 };
 
-} // namespace glug
-
-#endif // GLUG_POINT_HPP
+#endif // GLUG_POINT_H

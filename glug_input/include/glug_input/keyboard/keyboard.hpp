@@ -1,32 +1,26 @@
-#ifndef GLUG_KEYBOARD_HPP
-#define GLUG_KEYBOARD_HPP
+#ifndef GLUG_KEYBOARD_H
+#define GLUG_KEYBOARD_H
 
 #include <glug_input/export.hpp>
+#include <glug_input/extern.hpp>
 
-namespace glug
-{
+#include <glug_input/keyboard/keys.hpp>
+#include <glug_input/keyboard/locks.hpp>
+#include <glug_input/keyboard/mods.hpp>
 
-enum class keys;
-enum class mods;
-enum class locks;
+GLUG_EXTERN_START
 
-struct keystate;
+int             INPUT_LIB_API glug_is_key_pressed(enum keys key);
+struct keystate INPUT_LIB_API glug_key_state();
 
-class INPUT_LIB_API keyboard
-{
-public:
-  static bool is_key_pressed(keys key);
-  static keystate key_state();
+int             INPUT_LIB_API glug_is_mod_active(enum mods mod);
+int             INPUT_LIB_API glug_are_mods_active(enum mods mods);
+enum mods       INPUT_LIB_API glug_mod_state();
 
-  static bool is_mod_active(mods mod);
-  static bool are_mods_active(mods mods);
-  static mods mod_state();
+int             INPUT_LIB_API glug_is_lock_toggled(enum locks lock);
+int             INPUT_LIB_API glug_are_locks_toggled(enum locks locks);
+enum locks      INPUT_LIB_API glug_lock_state();
 
-  static bool is_lock_toggled(locks lock);
-  static bool are_locks_toggled(locks locks);
-  static locks lock_state();
-};
+GLUG_EXTERN_END
 
-} // namespace glug
-
-#endif // GLUG_KEYBOARD_HPP
+#endif // GLUG_KEYBOARD_H

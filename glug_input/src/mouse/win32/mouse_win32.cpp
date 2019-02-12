@@ -6,50 +6,46 @@
 
 #include <Windows.h>
 
-namespace glug
+int is_button_pressed(enum buttons button)
 {
+    static unsigned short mask = 1 << 15;
 
-bool mouse_plat::is_button_pressed(buttons button)
-{
-  static unsigned short mask = 1 << 15;
-
-  return (GetAsyncKeyState(button_util::code_from_button(button)) & mask) != 0;
+    return (GetAsyncKeyState(code_from_button(button)) & mask) != 0;
 }
 
-buttons mouse_plat::button_state()
+enum buttons button_state()
 {
-  buttons state = buttons::none;
+    enum buttons btn, btn_state = glug_btn_none;
 
-  buttons button = static_cast<buttons>(static_cast<int>(buttons::none) + 1);
-  for(; button < buttons::unknown; button <<= 1)
-    if (is_button_pressed(button))
-        state |= button;
+    for(btn = glug_btn_none + 1; btn < glug_btn_unknown; btn <<= 1)
+        if (is_button_pressed(btn))
+            btn_state |= btn;
 
-  return state;
+    return btn_state;
 }
 
-point mouse_plat::position()
+struct point position()
 {
-  POINT mp;
-  GetCursorPos(&mp);
-  return {
-          mp.x,
-          mp.y,
-         };
+    POINT mp;
+    struct point p;
+
+    GetCursorPos(&mp);
+    p.x = mp.x;
+    p.y = mp.y;
+
+    return p;
 }
 
-void mouse_plat::move(const point &delta)
+void move(const struct point *delta)
 {
-  point curr = position();
-  curr.x += delta.x;
-  curr.y += delta.y;
+    struct point curr = position();
+    curr.x += delta->x;
+    curr.y += delta->y;
 
-  warp(curr);
+    warp(&curr);
 }
 
-void mouse_plat::warp(const point &new_pos)
+void warp(const struct point *new_pos)
 {
-  SetCursorPos(static_cast<LONG>(new_pos.x), static_cast<LONG>(new_pos.y));
+    SetCursorPos(new_pos->x, new_pos->y);
 }
-
-} // namespace glug

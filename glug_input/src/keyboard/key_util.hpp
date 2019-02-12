@@ -1,25 +1,11 @@
-#ifndef GLUG_KEY_UTIL_HPP
-#define GLUG_KEY_UTIL_HPP
+#ifndef GLUG_KEY_UTIL_H
+#define GLUG_KEY_UTIL_H
 
-#include <glug_input/export.hpp>
+#include <glug_input/keyboard/keys.hpp>
 
-namespace glug
-{
+int       code_from_key(enum keys key);
+enum keys key_from_code(int key);
 
-enum class keys;
+void set_key_state(char *state, enum keys key, int active);
 
-class GLUG_LIB_LOCAL key_util
-{
-public:
-  static int  code_from_key(keys key);
-  static keys key_from_code(int key);
-
-  static void set_key_state(char *state, keys key, bool active);
-};
-
-bool GLUG_LIB_LOCAL operator< (keys &lhs, keys &rhs);
-keys GLUG_LIB_LOCAL operator++ (keys &key, int);
-
-} // namespace glug
-
-#endif // GLUG_KEY_UTIL_HPP
+#endif // GLUG_KEY_UTIL_H

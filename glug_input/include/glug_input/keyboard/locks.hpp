@@ -1,29 +1,13 @@
-#ifndef GLUG_LOCKS_HPP
-#define GLUG_LOCKS_HPP
+#ifndef GLUG_LOCKS_H
+#define GLUG_LOCKS_H
 
-#include <glug_input/export.hpp>
-
-namespace glug
+enum locks
 {
-
-enum class locks
-{
-  none,
-  caps    = 1 << 0,
-  num     = 1 << 1,
-  scroll  = 1 << 2,
-  unknown = 1 << 3,
+    glug_lock_none,
+    glug_lock_caps    = 1 << 0,
+    glug_lock_num     = 1 << 1,
+    glug_lock_scroll  = 1 << 2,
+    glug_lock_unknown = 1 << 3
 };
 
-bool  INPUT_LIB_API operator! (locks lock);
-locks INPUT_LIB_API operator~ (locks lock);
-
-locks INPUT_LIB_API  operator|  (locks  lhs, locks rhs);
-locks INPUT_LIB_API &operator|= (locks &lhs, locks rhs);
-
-locks INPUT_LIB_API  operator&  (locks  lhs, locks rhs);
-locks INPUT_LIB_API &operator&= (locks &lhs, locks rhs);
-
-} // namespace glug
-
-#endif // GLUG_LOCKS_HPP
+#endif // GLUG_LOCKS_H

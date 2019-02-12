@@ -11,72 +11,87 @@
 
 #define KEYBOARDMAPSIZE 32
 
-static ::Display *xdisplay = XOpenDisplay(NULL);
-static ::Window xroot_window = XDefaultRootWindow(xdisplay);
-
-namespace glug
+static Display *get_display()
 {
+    static Display *xdisplay = NULL;
 
-static bool check_key(char *xkey_map, keys key)
-{
-  unsigned int key_code = XKeysymToKeycode(xdisplay, key_util::code_from_key(key));
-  return xkey_map[key_code / 8] & (1 << key_code % 8);
+    if (xdisplay) return xdisplay;
+
+    xdisplay = XOpenDisplay(NULL);
+    return xdisplay;
 }
 
-bool keyboard_plat::is_key_pressed(keys key)
+static Window root_window()
 {
-  char xkey_map[KEYBOARDMAPSIZE];
-  XQueryKeymap(xdisplay, xkey_map);
-  return check_key(xkey_map, key);
+    static Window xroot_window = 0;
+    if (!get_display() || xroot_window) return xroot_window;
+
+    return XDefaultRootWindow(get_display());
 }
 
-void keyboard_plat::key_state(char *state)
+static int check_key(char *xglug_key_map, enum keys key)
 {
-  char xkey_map[KEYBOARDMAPSIZE];
-  XQueryKeymap(xdisplay, xkey_map);
-  for (keys key = keys::none; key < keys::unknown; key++)
-    key_util::set_key_state(state, key, check_key(xkey_map, key));
+    unsigned int glug_key_code = XKeysymToKeycode(get_display(), code_from_key(key));
+    return xglug_key_map[glug_key_code / 8] & (1 << glug_key_code % 8);
 }
 
-bool keyboard_plat::is_mod_pressed(mods mod)
+int is_key_pressed(enum keys key)
 {
-  return !!(mod_state() & mod);
+    char xglug_key_map[KEYBOARDMAPSIZE];
+
+    XQueryKeymap(get_display(), xglug_key_map);
+    return check_key(xglug_key_map, key);
 }
 
-mods keyboard_plat::mod_state()
+void key_state(char *state)
 {
-  static ::Window temp_win;
-  static int temp;
-  unsigned int modifiers;
-  XQueryPointer(xdisplay, xroot_window,
-                &temp_win, &temp_win,
-                &temp, &temp, &temp, &temp,
-                &modifiers);
+    char xglug_key_map[KEYBOARDMAPSIZE];
+    enum keys key;
 
-  mods mod_state = mods::none;
-  for (mods mod = static_cast<mods>(static_cast<int>(mods::none) + 1); mod < mods::unknown; mod <<= 1)
-    if (modifiers & mod_util::code_from_mod(mod))
-      mod_state |= mod;
-
-  return mod_state;
+    XQueryKeymap(get_display(), xglug_key_map);
+    for (key = glug_key_none; key < glug_key_unknown; key++)
+        set_key_state(state, key, check_key(xglug_key_map, key));
 }
 
-bool keyboard_plat::is_lock_toggled(locks lock)
+int is_mod_pressed(enum mods mod)
 {
-  XKeyboardState lock_state;
-  XGetKeyboardControl(xdisplay, &lock_state);
-
-  return lock_state.led_mask & static_cast<unsigned long>(lock);
+    return !!(mod_state() & mod);
 }
 
-locks keyboard_plat::lock_state()
+enum mods mod_state()
 {
-  locks lock_state = locks::none;
-  for (locks lock = static_cast<locks>(static_cast<int>(locks::none) + 1); lock < locks::unknown; lock <<= 1)
-    if (is_lock_toggled(lock))
-      lock_state |= lock;
+    static Window temp_win;
+    static int temp;
+    unsigned int modifiers;
+    enum mods mod, mod_state = glug_mod_none;
 
-  return lock_state;
+    XQueryPointer(get_display(), root_window(),
+                  &temp_win, &temp_win,
+                  &temp, &temp, &temp, &temp,
+                  &modifiers);
+
+    for (mod = glug_mod_none + 1; mod < glug_mod_unknown; mod <<= 1)
+    if (modifiers & code_from_mod(mod))
+        mod_state |= mod;
+
+    return mod_state;
 }
 
-} // namespace glug
+int is_lock_toggled(enum locks lock)
+{
+    XKeyboardState lock_state;
+    XGetKeyboardControl(get_display(), &lock_state);
+
+    return lock_state.led_mask & lock;
+}
+
+enum locks lock_state()
+{
+    enum locks lock, lock_state = glug_lock_none;
+
+    for (lock = glug_lock_none + 1; lock < glug_lock_unknown; lock <<= 1)
+        if (is_lock_toggled(lock))
+            lock_state |= lock;
+
+    return lock_state;
+}

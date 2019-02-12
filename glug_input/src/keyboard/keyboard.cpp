@@ -5,49 +5,44 @@
 
 #include "keyboard_plat.hpp"
 
-namespace glug
+int glug_is_key_pressed(enum keys key)
 {
-
-bool keyboard::is_key_pressed(keys key)
-{
-  return keyboard_plat::is_key_pressed(key);
+    return is_key_pressed(key);
 }
 
-keystate keyboard::key_state()
+struct keystate glug_key_state()
 {
-  keystate k;
-  keyboard_plat::key_state(k.mask);
-  return k;
+    struct keystate k;
+    key_state(k.mask);
+    return k;
 }
 
-bool keyboard::is_mod_active(mods mod)
+int glug_is_mod_active(enum mods mod)
 {
-  return keyboard_plat::is_mod_pressed(mod);
+    return is_mod_pressed(mod);
 }
 
-bool keyboard::are_mods_active(mods mod)
+int glug_are_mods_active(enum mods mod)
 {
-  return (mod_state() & mod) == mod;
+    return (mod_state() & mod) == mod;
 }
 
-mods keyboard::mod_state()
+enum mods glug_mod_state()
 {
-  return keyboard_plat::mod_state();
+    return mod_state();
 }
 
-bool keyboard::is_lock_toggled(locks lock)
+int glug_is_lock_toggled(enum locks lock)
 {
-  return keyboard_plat::is_lock_toggled(lock);
+    return is_lock_toggled(lock);
 }
 
-bool keyboard::are_locks_toggled(locks locks)
+int glug_are_locks_toggled(enum locks locks)
 {
-  return (lock_state() & locks) == locks;
+    return (lock_state() & locks) == locks;
 }
 
-locks keyboard::lock_state()
+enum locks glug_lock_state()
 {
-  return keyboard_plat::lock_state();
+    return lock_state();
 }
-
-} // namespace glug

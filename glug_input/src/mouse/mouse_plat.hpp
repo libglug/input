@@ -1,26 +1,15 @@
-#ifndef GLUG_MOUSE_PLAT_HPP
-#define GLUG_MOUSE_PLAT_HPP
+#ifndef GLUG_MOUSE_PLAT_H
+#define GLUG_MOUSE_PLAT_H
 
-#include <glug_input/export.hpp>
+#include <glug_input/mouse/buttons.hpp>
+#include <glug_input/mouse/point.hpp>
 
-namespace glug
-{
+int is_button_pressed(enum buttons buttons);
+enum buttons button_state();
 
-struct point;
-enum class buttons;
+struct point position();
 
-class GLUG_LIB_LOCAL mouse_plat
-{
-public:
-  static bool is_button_pressed(buttons buttons);
-  static buttons button_state();
+void move(const struct point *delta);
+void warp(const struct point *new_pos);
 
-  static point position();
-
-  static void move(const point &delta);
-  static void warp(const point &new_pos);
-};
-
-} // namespace glug
-
-#endif // GLUG_MOUSE_PLAT_HPP
+#endif // GLUG_MOUSE_PLAT_H

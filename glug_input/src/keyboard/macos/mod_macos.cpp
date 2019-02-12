@@ -3,34 +3,29 @@
 
 #include <HIToolbox.framework/Headers/Events.h>
 
-namespace glug
+int code_from_mod(enum mods mod)
 {
+    switch (mod)
+    {
+    case glug_mod_shift:                return kCGEventFlagMaskShift;
+    case glug_mod_alt:                  return kCGEventFlagMaskAlternate;
+    case glug_mod_ctrl:                 return kCGEventFlagMaskControl;
+    case glug_mod_super:                return kCGEventFlagMaskCommand;
+    case glug_mod_none:                 // fall-through
+    case glug_mod_unknown:              break;
+    }
 
-int mod_util::code_from_mod(mods mod)
-{
-  switch (mod)
-  {
-  case mods::shift:     return kCGEventFlagMaskShift;
-  case mods::alt:       return kCGEventFlagMaskAlternate;
-  case mods::ctrl:      return kCGEventFlagMaskControl;
-  case mods::super:     return kCGEventFlagMaskCommand;
-  case mods::none:      // fall-through
-  case mods::unknown:   break;
-  }
-
-  return 0;
+    return 0;
 }
 
-mods mod_util::mod_from_code(int mod)
+enum mods mod_from_code(int mod)
 {
-  switch (mod)
-  {
-  case kCGEventFlagMaskShift:     return mods::shift;
-  case kCGEventFlagMaskAlternate: return mods::alt;
-  case kCGEventFlagMaskControl:   return mods::ctrl;
-  case kCGEventFlagMaskCommand:   return mods::super;
-  default:                        return mods::none;
-  }
+    switch (mod)
+    {
+    case kCGEventFlagMaskShift:         return glug_mod_shift;
+    case kCGEventFlagMaskAlternate:     return glug_mod_alt;
+    case kCGEventFlagMaskControl:       return glug_mod_ctrl;
+    case kCGEventFlagMaskCommand:       return glug_mod_super;
+    default:                            return glug_mod_none;
+    }
 }
-
-} // namespace glug

@@ -4,42 +4,37 @@
 
 #include "mouse_plat.hpp"
 
-namespace glug
+int glug_is_button_pressed(enum buttons button)
 {
-
-bool mouse::is_button_pressed(buttons button)
-{
-  return mouse_plat::is_button_pressed(button);
+    return is_button_pressed(button);
 }
 
-bool mouse::are_buttons_pressed(buttons buttons)
+int glug_are_buttons_pressed(enum buttons buttons)
 {
-  return (button_state() & buttons) == buttons;
+    return (button_state() & buttons) == buttons;
 }
 
-bool mouse::only_buttons_pressed(buttons buttons)
+int glug_only_buttons_pressed(enum buttons buttons)
 {
-  return button_state() == buttons;
+    return button_state() == buttons;
 }
 
-buttons mouse::button_state()
+enum buttons glug_button_state()
 {
-  return mouse_plat::button_state();
+    return button_state();
 }
 
-point mouse::position()
+struct point glug_position()
 {
-  return mouse_plat::position();
+    return position();
 }
 
-void mouse::move(const point &delta)
+void glug_move(const struct point *delta)
 {
-  return mouse_plat::move(delta);
+    move(delta);
 }
 
-void mouse::warp(const point &new_pos)
+void glug_warp(const struct point *new_pos)
 {
-  return mouse_plat::warp(new_pos);
+    warp(new_pos);
 }
-
-} // namespace glug

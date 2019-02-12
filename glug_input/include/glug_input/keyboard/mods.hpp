@@ -1,30 +1,14 @@
-#ifndef GLUG_MODS_HPP
-#define GLUG_MODS_HPP
+#ifndef GLUG_MODS_H
+#define GLUG_MODS_H
 
-#include <glug_input/export.hpp>
-
-namespace glug
+enum mods
 {
-
-enum class mods
-{
-  none,
-  shift   = 1 << 0,
-  alt     = 1 << 1,
-  ctrl    = 1 << 2,
-  super   = 1 << 3,
-  unknown = 1 << 4,
+    glug_mod_none,
+    glug_mod_shift   = 1 << 0,
+    glug_mod_alt     = 1 << 1,
+    glug_mod_ctrl    = 1 << 2,
+    glug_mod_super   = 1 << 3,
+    glug_mod_unknown = 1 << 4
 };
 
-bool INPUT_LIB_API operator! (mods mod);
-mods INPUT_LIB_API operator~ (mods mod);
-
-mods INPUT_LIB_API  operator|  (mods  lhs, mods rhs);
-mods INPUT_LIB_API &operator|= (mods &lhs, mods rhs);
-
-mods INPUT_LIB_API  operator&  (mods  lhs, mods rhs);
-mods INPUT_LIB_API &operator&= (mods &lhs, mods rhs);
-
-} // namespace glug
-
-#endif // GLUG_MODS_HPP
+#endif // GLUG_MODS_H

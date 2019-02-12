@@ -1,29 +1,25 @@
-#ifndef GLUG_MOUSE_HPP
-#define GLUG_MOUSE_HPP
+#ifndef GLUG_MOUSE_H
+#define GLUG_MOUSE_H
 
 #include <glug_input/export.hpp>
+#include <glug_input/extern.hpp>
 
-namespace glug
-{
+#include <glug_input/mouse/buttons.hpp>
+#include <glug_input/mouse/point.hpp>
 
-struct point;
-enum class buttons;
+GLUG_EXTERN_START
 
-class INPUT_LIB_API mouse
-{
-public:
-  static bool is_button_pressed(buttons buttons);
-  static bool are_buttons_pressed(buttons buttons);
-  static bool only_buttons_pressed(buttons buttons);
+int          INPUT_LIB_API glug_is_button_pressed(enum buttons buttons);
+int          INPUT_LIB_API glug_are_buttons_pressed(enum buttons buttons);
+int          INPUT_LIB_API glug_only_buttons_pressed(enum buttons buttons);
 
-  static buttons button_state();
+enum buttons INPUT_LIB_API glug_button_state();
 
-  static point position();
+struct point INPUT_LIB_API glug_position();
 
-  static void move(const point &delta);
-  static void warp(const point &new_pos);
-};
+void         INPUT_LIB_API glug_move(const struct point *delta);
+void         INPUT_LIB_API glug_warp(const struct point *new_pos);
 
-} // namespace glug
+GLUG_EXTERN_END
 
-#endif // GLUG_MOUSE_HPP
+#endif // GLUG_MOUSE_H

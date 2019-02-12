@@ -24,13 +24,7 @@ set(INPUT_HEADERS
 set(INPUT_SOURCES
     ${INPUT_SRC_ROOT}/keyboard/keyboard.cpp
     ${INPUT_SRC_ROOT}/keyboard/key_util.cpp
-    ${INPUT_SRC_ROOT}/keyboard/lock_util.cpp
-    ${INPUT_SRC_ROOT}/keyboard/mod_util.cpp
-    ${INPUT_SRC_ROOT}/keyboard/locks.cpp
-    ${INPUT_SRC_ROOT}/keyboard/mods.cpp
     ${INPUT_SRC_ROOT}/mouse/mouse.cpp
-    ${INPUT_SRC_ROOT}/mouse/buttons.cpp
-    ${INPUT_SRC_ROOT}/mouse/button_util.cpp
 )
 
 set(INPUT_PLATFORM_HEADERS

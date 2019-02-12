@@ -1,28 +1,17 @@
-#ifndef GLUG_KEYBOARD_PLAT_HPP
-#define GLUG_KEYBOARD_PLAT_HPP
+#ifndef GLUG_KEYBOARD_PLAT_H
+#define GLUG_KEYBOARD_PLAT_H
 
-#include <glug_input/export.hpp>
+#include <glug_input/keyboard/keys.hpp>
+#include <glug_input/keyboard/locks.hpp>
+#include <glug_input/keyboard/mods.hpp>
 
-namespace glug
-{
+int is_key_pressed(enum keys key);
+void key_state(char *state);
 
-enum class keys;
-enum class mods;
-enum class locks;
+int is_mod_pressed(enum mods mod);
+enum mods mod_state();
 
-class GLUG_LIB_LOCAL keyboard_plat
-{
-public:
-  static bool is_key_pressed(keys key);
-  static void key_state(char *state);
+int is_lock_toggled(enum locks lock);
+enum locks lock_state();
 
-  static bool is_mod_pressed(mods mod);
-  static mods mod_state();
-
-  static bool is_lock_toggled(locks lock);
-  static locks lock_state();
-};
-
-} // namespace glug
-
-#endif // GLUG_KEYBOARD_PLAT_HPP
+#endif // GLUG_KEYBOARD_PLAT_H

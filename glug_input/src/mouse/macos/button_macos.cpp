@@ -6,36 +6,31 @@
 #define kCGMouseButtonEx1 (kCGMouseButtonCenter + 1)
 #define kCGMouseButtonEx2 (kCGMouseButtonEx1 + 1)
 
-namespace glug
+int code_from_button(enum buttons button)
 {
+    switch(button)
+    {
+    case glug_btn_left:         return kCGMouseButtonLeft;
+    case glug_btn_mid:          return kCGMouseButtonCenter;
+    case glug_btn_right:        return kCGMouseButtonRight;
+    case glug_btn_ex1:          return kCGMouseButtonEx1;
+    case glug_btn_ex2:          return kCGMouseButtonEx2;
+    case glug_btn_none:         // fall-through
+    case glug_btn_unknown:      break;
+    }
 
-int button_util::code_from_button(buttons button)
-{
-  switch(button)
-  {
-  case buttons::left:     return kCGMouseButtonLeft;
-  case buttons::mid:      return kCGMouseButtonCenter;
-  case buttons::right:    return kCGMouseButtonRight;
-  case buttons::ex1:      return kCGMouseButtonEx1;
-  case buttons::ex2:      return kCGMouseButtonEx2;
-  case buttons::none:     // fall-through
-  case buttons::unknown:  break;
-  }
-
-  return -1;
+    return -1;
 }
 
-buttons button_util::button_from_code(int button)
+enum buttons button_from_code(int button)
 {
-  switch(button)
-  {
-  case kCGMouseButtonLeft:    return buttons::left;
-  case kCGMouseButtonCenter:  return buttons::mid;
-  case kCGMouseButtonRight:   return buttons::right;
-  case kCGMouseButtonEx1:     return buttons::ex1;
-  case kCGMouseButtonEx2:     return buttons::ex2;
-  default:                    return buttons::none;
-  }
+    switch(button)
+    {
+    case kCGMouseButtonLeft:    return glug_btn_left;
+    case kCGMouseButtonCenter:  return glug_btn_mid;
+    case kCGMouseButtonRight:   return glug_btn_right;
+    case kCGMouseButtonEx1:     return glug_btn_ex1;
+    case kCGMouseButtonEx2:     return glug_btn_ex2;
+    default:                    return glug_btn_none;
+    }
 }
-
-} // namespace glug

@@ -1,5 +1,5 @@
-#ifndef GLUG_MACOS_KEY_DEFS_HPP
-#define GLUG_MACOS_KEY_DEFS_HPP
+#ifndef GLUG_MACOS_KEY_DEFS_H
+#define GLUG_MACOS_KEY_DEFS_H
 
 #include <HIToolbox.framework/Headers/Events.h>
 
@@ -21,4 +21,4 @@
 #define gMask_LeftCommand  (gVK_LeftCommand  | kCGEventFlagMaskCommand)
 #define gMask_RightCommand (gVK_RightCommand | kCGEventFlagMaskCommand)
 
-#endif // GLUG_MACOS_KEY_DEFS_HPP
+#endif // GLUG_MACOS_KEY_DEFS_H

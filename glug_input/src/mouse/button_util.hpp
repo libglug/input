@@ -1,22 +1,9 @@
-#ifndef GLUG_BUTTON_UTIL_HPP
-#define GLUG_BUTTON_UTIL_HPP
+#ifndef GLUG_BUTTON_UTIL_H
+#define GLUG_BUTTON_UTIL_H
 
-#include <glug_input/export.hpp>
+#include <glug_input/mouse/buttons.hpp>
 
-namespace glug
-{
+int          code_from_button(enum buttons button);
+enum buttons button_from_code(int button);
 
-enum class buttons;
-
-class GLUG_LIB_LOCAL button_util
-{
-public:
-  static int code_from_button(buttons button);
-  static buttons button_from_code(int button);
-};
-
-buttons GLUG_LIB_LOCAL &operator<<= (buttons &button, int n);
-
-} // namespace glug
-
-#endif // GLUG_BUTTON_UTIL_HPP
+#endif // GLUG_BUTTON_UTIL_H

@@ -3,32 +3,27 @@
 
 #include <X11/Xutil.h>
 
-namespace glug
+int code_from_lock(enum locks lock)
 {
+    switch (lock)
+    {
+    case glug_lock_caps:        return XK_Caps_Lock;
+    case glug_lock_num:         return XK_Num_Lock;
+    case glug_lock_scroll:      return XK_Scroll_Lock;
+    case glug_lock_none:        // fall-through
+    case glug_lock_unknown:     break;
+    }
 
-int lock_util::code_from_lock(locks lock)
-{
-  switch (lock)
-  {
-  case locks::caps:    return XK_Caps_Lock;
-  case locks::num:     return XK_Num_Lock;
-  case locks::scroll:  return XK_Scroll_Lock;
-  case locks::none:    //fall-through
-  case locks::unknown: break;
-  }
-
-  return 0;
+    return 0;
 }
 
-locks lock_util::lock_from_code(int lock)
+enum locks lock_from_code(int lock)
 {
-  switch (lock)
-  {
-  case XK_Caps_Lock:      return locks::caps;
-  case XK_Num_Lock:       return locks::num;
-  case XK_Scroll_Lock:    return locks::scroll;
-  default:                return locks::none;
-  }
+    switch (lock)
+    {
+    case XK_Caps_Lock:          return glug_lock_caps;
+    case XK_Num_Lock:           return glug_lock_num;
+    case XK_Scroll_Lock:        return glug_lock_scroll;
+    default:                    return glug_lock_none;
+    }
 }
-
-} // namespace glug

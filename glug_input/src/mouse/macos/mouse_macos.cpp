@@ -4,60 +4,55 @@
 #include <glug_input/mouse/buttons.hpp>
 #include <glug_input/mouse/point.hpp>
 
-#include <CoreGraphics/CGEventSource.h>
-#include <CoreGraphics/CGEvent.h>
+#include <CoreGraphics/CGEventSource.hpp>
+#include <CoreGraphics/CGEvent.hpp>
 
-namespace glug
+int is_button_pressed(enum buttons button)
 {
-
-bool mouse_plat::is_button_pressed(buttons button)
-{
-  return CGEventSourceButtonState(kCGEventSourceStateCombinedSessionState,
-                                  static_cast<CGMouseButton>(button_util::code_from_button(button)));
+    return CGEventSourceButtonState(kCGEventSourceStateCombinedSessionState,
+                                    (CGMouseButton)code_from_button(button));
 }
 
-buttons mouse_plat::button_state()
+enum buttons button_state()
 {
-  buttons state = buttons::none;
+    enum buttons btn, btn_state = glug_btn_none;
 
-  buttons button = static_cast<buttons>(static_cast<int>(buttons::none) + 1);
-  for(; button < buttons::unknown; button <<= 1)
-    if (is_button_pressed(button))
-      state |= button;
+    for(btn = glug_btn_none + 1; btn < glug_btn_unknown; btn <<= 1)
+        if (is_button_pressed(btn))
+            btn_state |= btn;
 
-  return state;
+    return btn_state;
 }
 
-point mouse_plat::position()
+struct point position()
 {
-  CGEventRef event = CGEventCreate(nil);
-  CGPoint cursor = CGEventGetLocation(event);
-  CFRelease(event);
+    CGEventRef event = CGEventCreate(nil);
+    CGPoint cursor = CGEventGetLocation(event);
+    struct point p;
+    CFRelease(event);
 
-  return {
-          static_cast<long long>(cursor.x),
-          static_cast<long long>(cursor.y),
-         };
+    p.x = (int)cursor.x;
+    p.y = (int)cursor.y;
+
+    return p;
 }
 
-void mouse_plat::move(const point &delta)
+void move(const struct point *delta)
 {
-  point curr = position();
-  curr.x += delta.x;
-  curr.y += delta.y;
+    struct point curr = position();
+    curr.x += delta->x;
+    curr.y += delta->y;
 
-  warp(curr);
+    warp(&curr);
 }
 
-void mouse_plat::warp(const point &new_pos)
+void warp(const struct point *new_pos)
 {
-  CGPoint pos = {
-                 static_cast<CGFloat>(new_pos.x),
-                 static_cast<CGFloat>(new_pos.y),
-                };
+    CGPoint pos = {
+                    (CGFloat)new_pos->x,
+                    (CGFloat)new_pos->y,
+                  };
 
-  CGDisplayMoveCursorToPoint(CGMainDisplayID(), pos);
-  CGAssociateMouseAndMouseCursorPosition(true);
+    CGDisplayMoveCursorToPoint(CGMainDisplayID(), pos);
+    CGAssociateMouseAndMouseCursorPosition(true);
 }
-
-} // namespace glug

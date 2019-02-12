@@ -2,32 +2,27 @@
 #include "lock_defs.hpp"
 #include <glug_input/keyboard/locks.hpp>
 
-namespace glug
+int code_from_lock(enum locks lock)
 {
-
-int lock_util::code_from_lock(locks lock)
-{
-  switch (lock)
-  {
-  case locks::caps:       return gMask_Alpha;
-  case locks::num:        return gMask_Num;
-  case locks::scroll:     // return ??;
-  case locks::none:       // fall-through
-  case locks::unknown:    break;
-  }
+    switch (lock)
+    {
+    case glug_lock_caps:        return gMask_Alpha;
+    case glug_lock_num:         return gMask_Num;
+    case glug_lock_scroll:      // return ??;
+    case glug_lock_none:        // fall-through
+    case glug_lock_unknown:     break;
+    }
 
   return 0;
 }
 
-locks lock_util::lock_from_code(int lock)
+enum locks lock_from_code(int lock)
 {
-  switch(lock)
-  {
-  case gMask_Alpha:   return locks::caps;
-  case gMask_Num:     return locks::num;
-//  case ??:            return locks::scroll;
-  default:            return locks::none;
-  }
+    switch(lock)
+    {
+    case gMask_Alpha:           return glug_lock_caps;
+    case gMask_Num:             return glug_lock_num;
+//    case ??:                    return glug_lock_scroll;
+    default:                    return glug_lock_none;
+    }
 }
-
-} // namespace glug

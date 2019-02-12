@@ -9,58 +9,54 @@
 
 #include <Windows.h>
 
-namespace glug
+static int get_key_state(int vk_key)
 {
-
-static bool get_key_state(int vk_key)
-{
-  static unsigned short keydown_mask = static_cast<unsigned short>(1 << 15);
-  return (GetAsyncKeyState(vk_key) & keydown_mask) != 0;
+    static unsigned short keydown_mask = 1 << 15;
+    return (GetAsyncKeyState(vk_key) & keydown_mask) != 0;
 }
 
-bool keyboard_plat::is_key_pressed(keys key)
+int is_key_pressed(enum keys key)
 {
-  return get_key_state(key_util::code_from_key(key));
+    return get_key_state(code_from_key(key));
 }
 
-void keyboard_plat::key_state(char *state)
+void key_state(char *state)
 {
-  for (keys key = keys::none; key < keys::unknown; key++)
-    key_util::set_key_state(state, key, is_key_pressed(key));
+    enum keys key;
+    for (key = glug_key_none; key < glug_key_unknown; key++)
+        set_key_state(state, key, is_key_pressed(key));
 }
 
-bool keyboard_plat::is_mod_pressed(mods mod)
+int is_mod_pressed(enum mods mod)
 {
-  if (mod == mods::super)
-    return is_key_pressed(keys::super_l) || is_key_pressed(keys::super_r);
+    if (mod == glug_mod_super)
+        return is_key_pressed(glug_key_super_l) || is_key_pressed(glug_key_super_r);
 
-  return get_key_state(mod_util::code_from_mod(mod));
+    return get_key_state(code_from_mod(mod));
 }
 
-mods keyboard_plat::mod_state()
+enum mods mod_state()
 {
-  mods mod_state = mods::none;
-  for (mods mod = static_cast<mods>(static_cast<int>(mods::none) + 1); mod < mods::unknown; mod <<= 1)
-    if (is_mod_pressed(mod))
-      mod_state |= mod;
+    enum mods mod, mod_state = glug_mod_none;
+    for (mod = glug_mod_none + 1; mod < glug_mod_unknown; mod <<= 1)
+        if (is_mod_pressed(mod))
+            mod_state |= mod;
 
-  return mod_state;
+    return mod_state;
 }
 
-bool keyboard_plat::is_lock_toggled(locks lock)
+int is_lock_toggled(enum locks lock)
 {
-  static SHORT lock_mask = 1;
-  return (GetKeyState(lock_util::code_from_lock(lock)) & lock_mask) != 0;
+    static SHORT lock_mask = 1;
+    return (GetKeyState(code_from_lock(lock)) & lock_mask) != 0;
 }
 
-locks keyboard_plat::lock_state()
+enum locks lock_state()
 {
-  locks lock_state = locks::none;
-  for (locks lock = static_cast<locks>(static_cast<int>(locks::none) + 1); lock < locks::unknown; lock <<= 1)
-    if (is_lock_toggled(lock))
-      lock_state |= lock;
+    enum locks lock_state = glug_lock_none;
+    for (enum locks lock = glug_lock_none + 1; lock < glug_lock_unknown; lock <<= 1)
+        if (is_lock_toggled(lock))
+            lock_state |= lock;
 
-  return lock_state;
+    return lock_state;
 }
-
-} // namespace glug

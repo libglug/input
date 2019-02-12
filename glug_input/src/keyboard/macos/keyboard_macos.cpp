@@ -9,55 +9,51 @@
 
 #include <HIToolbox.framework/Headers/Events.h>
 
-namespace glug
+static int is_mod_key_pressed(enum keys key)
 {
-
-static bool is_mod_key_pressed(keys key)
-{
-  CGEventFlags modifiers = CGEventSourceFlagsState(kCGEventSourceStateCombinedSessionState);
-  return modifiers & key_util::code_from_key(key);
+    CGEventFlags modifiers = CGEventSourceFlagsState(kCGEventSourceStateCombinedSessionState);
+    return (int)(modifiers & (unsigned long long)code_from_key(key));
 }
 
-bool keyboard_plat::is_key_pressed(keys key)
+int is_key_pressed(enum keys key)
 {
-  if (keys::shift_l <= key && key <= keys::super_r)
-    return is_mod_key_pressed(key);
+    if (glug_key_shift_l <= key && key <= glug_key_super_r)
+        return is_mod_key_pressed(key);
 
-  return CGEventSourceKeyState(kCGEventSourceStateCombinedSessionState, key_util::code_from_key(key));
+    return CGEventSourceKeyState(kCGEventSourceStateCombinedSessionState, (CGKeyCode)code_from_key(key));
 }
 
-void keyboard_plat::key_state(char *state)
+void key_state(char *state)
 {
-  for (keys key = keys::none; key < keys::unknown; key++)
-    key_util::set_key_state(state, key, is_key_pressed(key));
+    enum keys key;
+    for (key = glug_key_none; key < glug_key_unknown; ++key)
+        set_key_state(state, key, is_key_pressed(key));
 }
 
-bool keyboard_plat::is_mod_pressed(mods mod)
+int is_mod_pressed(enum mods mod)
 {
-  return !!(mod_state() & mod);
+    return !!(mod_state() & mod);
 }
 
-mods keyboard_plat::mod_state()
+enum mods mod_state()
 {
-  CGEventFlags modifiers = CGEventSourceFlagsState(kCGEventSourceStateCombinedSessionState);
+    enum mods mod, mod_state = glug_mod_none;
+    CGEventFlags modifiers = CGEventSourceFlagsState(kCGEventSourceStateCombinedSessionState);
 
-  mods mod_state = mods::none;
-  for (mods mod = static_cast<mods>(static_cast<int>(mods::none) + 1); mod < mods::unknown; mod <<= 1)
-    if (modifiers & mod_util::code_from_mod(mod))
-      mod_state |= mod;
+    for (mod = glug_mod_none + 1; mod < glug_mod_unknown; mod <<= 1)
+        if (modifiers & (unsigned long long)code_from_mod(mod))
+            mod_state |= mod;
 
-  return mod_state;
+    return mod_state;
 }
 
-bool keyboard_plat::is_lock_toggled(locks lock)
+int is_lock_toggled(enum locks lock)
 {
-  return !!(lock_state() & lock);
+    return !!(lock_state() & lock);
 }
 
-locks keyboard_plat::lock_state()
+enum locks lock_state()
 {
-  CGEventFlags modifiers = CGEventSourceFlagsState(kCGEventSourceStateCombinedSessionState);
-  return modifiers & lock_util::code_from_lock(locks::caps) ? locks::caps : locks::none;
+    CGEventFlags modifiers = CGEventSourceFlagsState(kCGEventSourceStateCombinedSessionState);
+    return modifiers & (unsigned long long)code_from_lock(glug_lock_caps) ? glug_lock_caps : glug_lock_none;
 }
-
-} // namespace glug
