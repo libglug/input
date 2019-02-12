@@ -5,35 +5,35 @@ set(INPUT_SRC_ROOT ${GLUG_INPUT_ROOT}/src)
 set(INPUT_INC_ROOT ${GLUG_INCLUDE_ROOT}/glug_input)
 
 set(UTIL_HEADERS
-    ${INPUT_INC_ROOT}/config.hpp
-    ${INPUT_INC_ROOT}/export.hpp
+    ${INPUT_INC_ROOT}/config.h
+    ${INPUT_INC_ROOT}/export.h
 )
 
 set(INPUT_HEADERS
-    ${INPUT_INC_ROOT}/keyboard.hpp
-    ${INPUT_INC_ROOT}/keyboard/keyboard.hpp
-    ${INPUT_INC_ROOT}/keyboard/keys.hpp
-    ${INPUT_INC_ROOT}/keyboard/locks.hpp
-    ${INPUT_INC_ROOT}/keyboard/mods.hpp
-    ${INPUT_INC_ROOT}/mouse.hpp
-    ${INPUT_INC_ROOT}/mouse/mouse.hpp
-    ${INPUT_INC_ROOT}/mouse/buttons.hpp
-    ${INPUT_INC_ROOT}/mouse/point.hpp
+    ${INPUT_INC_ROOT}/keyboard.h
+    ${INPUT_INC_ROOT}/keyboard/keyboard.h
+    ${INPUT_INC_ROOT}/keyboard/keys.h
+    ${INPUT_INC_ROOT}/keyboard/locks.h
+    ${INPUT_INC_ROOT}/keyboard/mods.h
+    ${INPUT_INC_ROOT}/mouse.h
+    ${INPUT_INC_ROOT}/mouse/mouse.h
+    ${INPUT_INC_ROOT}/mouse/buttons.h
+    ${INPUT_INC_ROOT}/mouse/point.h
 )
 
 set(INPUT_SOURCES
-    ${INPUT_SRC_ROOT}/keyboard/keyboard.cpp
-    ${INPUT_SRC_ROOT}/keyboard/key_util.cpp
-    ${INPUT_SRC_ROOT}/mouse/mouse.cpp
+    ${INPUT_SRC_ROOT}/keyboard/keyboard.c
+    ${INPUT_SRC_ROOT}/keyboard/key_util.c
+    ${INPUT_SRC_ROOT}/mouse/mouse.c
 )
 
 set(INPUT_PLATFORM_HEADERS
-    ${INPUT_SRC_ROOT}/keyboard/keyboard_plat.hpp
-    ${INPUT_SRC_ROOT}/keyboard/key_util.hpp
-    ${INPUT_SRC_ROOT}/keyboard/lock_util.hpp
-    ${INPUT_SRC_ROOT}/keyboard/mod_util.hpp
-    ${INPUT_SRC_ROOT}/mouse/mouse_plat.hpp
-    ${INPUT_SRC_ROOT}/mouse/button_util.hpp
+    ${INPUT_SRC_ROOT}/keyboard/keyboard_plat.h
+    ${INPUT_SRC_ROOT}/keyboard/key_util.h
+    ${INPUT_SRC_ROOT}/keyboard/lock_util.h
+    ${INPUT_SRC_ROOT}/keyboard/mod_util.h
+    ${INPUT_SRC_ROOT}/mouse/mouse_plat.h
+    ${INPUT_SRC_ROOT}/mouse/button_util.h
 )
 
 # Windows sources
@@ -41,13 +41,13 @@ set(WIN32_KEY_ROOT ${INPUT_SRC_ROOT}/keyboard/win32)
 set(WIN32_MOUSE_ROOT ${INPUT_SRC_ROOT}/mouse/win32)
 
 set(WIN32_SOURCES
-    ${WIN32_KEY_ROOT}/keyboard_win32.cpp
-    ${WIN32_KEY_ROOT}/key_defs.hpp
-    ${WIN32_KEY_ROOT}/key_win32.cpp
-    ${WIN32_KEY_ROOT}/lock_win32.cpp
-    ${WIN32_KEY_ROOT}/mod_win32.cpp
-    ${WIN32_MOUSE_ROOT}/mouse_win32.cpp
-    ${WIN32_MOUSE_ROOT}/button_win32.cpp
+    ${WIN32_KEY_ROOT}/keyboard_win32.c
+    ${WIN32_KEY_ROOT}/key_defs.h
+    ${WIN32_KEY_ROOT}/key_win32.c
+    ${WIN32_KEY_ROOT}/lock_win32.c
+    ${WIN32_KEY_ROOT}/mod_win32.c
+    ${WIN32_MOUSE_ROOT}/mouse_win32.c
+    ${WIN32_MOUSE_ROOT}/button_win32.c
 )
 
 # Mac OS sources
@@ -55,14 +55,14 @@ set(MACOS_KEY_ROOT ${INPUT_SRC_ROOT}/keyboard/macos)
 set(MACOS_MOUSE_ROOT ${INPUT_SRC_ROOT}/mouse/macos)
 
 set(MACOS_SOURCES
-    ${MACOS_KEY_ROOT}/keyboard_macos.cpp
-    ${MACOS_KEY_ROOT}/key_defs.hpp
-    ${MACOS_KEY_ROOT}/key_macos.cpp
-    ${MACOS_KEY_ROOT}/lock_defs.hpp
-    ${MACOS_KEY_ROOT}/lock_macos.cpp
-    ${MACOS_KEY_ROOT}/mod_macos.cpp
-    ${MACOS_MOUSE_ROOT}/mouse_macos.cpp
-    ${MACOS_MOUSE_ROOT}/button_macos.cpp
+    ${MACOS_KEY_ROOT}/keyboard_macos.c
+    ${MACOS_KEY_ROOT}/key_defs.h
+    ${MACOS_KEY_ROOT}/key_macos.c
+    ${MACOS_KEY_ROOT}/lock_defs.h
+    ${MACOS_KEY_ROOT}/lock_macos.c
+    ${MACOS_KEY_ROOT}/mod_macos.c
+    ${MACOS_MOUSE_ROOT}/mouse_macos.c
+    ${MACOS_MOUSE_ROOT}/button_macos.c
 )
 
 # x11 sources
@@ -70,13 +70,12 @@ set(X11_KEY_ROOT ${INPUT_SRC_ROOT}/keyboard/x11)
 set(X11_MOUSE_ROOT ${INPUT_SRC_ROOT}/mouse/x11)
 
 set(X11_SOURCES
-    ${X11_KEY_ROOT}/keyboard_x11.cpp
-    ${X11_KEY_ROOT}/key_defs.hpp
-    ${X11_KEY_ROOT}/key_x11.cpp
-    ${X11_KEY_ROOT}/lock_x11.cpp
-    ${X11_KEY_ROOT}/mod_x11.cpp
-    ${X11_MOUSE_ROOT}/mouse_x11.cpp
-    ${X11_MOUSE_ROOT}/button_x11.cpp
+    ${X11_KEY_ROOT}/keyboard_x11.c
+    ${X11_KEY_ROOT}/key_x11.c
+    ${X11_KEY_ROOT}/lock_x11.c
+    ${X11_KEY_ROOT}/mod_x11.c
+    ${X11_MOUSE_ROOT}/mouse_x11.c
+    ${X11_MOUSE_ROOT}/button_x11.c
 )
 
 # Find the libs necessary for the target platform

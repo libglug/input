@@ -1,5 +1,5 @@
-#include <glug_input/mouse.hpp>
-#include <glug_input/keyboard.hpp>
+#include <glug_input/mouse.h>
+#include <glug_input/keyboard.h>
 
 #include <iostream>
 
