@@ -1,5 +1,5 @@
 #include "../lock_util.h"
-#include <glug_input/keyboard/locks.h>
+#include <glug/input/keyboard/locks.h>
 
 #include <X11/Xutil.h>
 

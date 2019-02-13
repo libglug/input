@@ -1,8 +1,8 @@
 #include "../mouse_plat.h"
 #include "../button_util.h"
 
-#include <glug_input/mouse/buttons.h>
-#include <glug_input/mouse/point_t.h>
+#include <glug/input/mouse/buttons.h>
+#include <glug/input/mouse/point_t.h>
 
 #include <CoreGraphics/CGEventSource.h>
 #include <CoreGraphics/CGEvent.h>

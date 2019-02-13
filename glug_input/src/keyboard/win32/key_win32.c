@@ -1,6 +1,6 @@
 #include "../key_util.h"
 #include "key_defs.h"
-#include <glug_input/keyboard/keys.h>
+#include <glug/input/keyboard/keys.h>
 
 int code_from_key(enum virtual_keys key)
 {

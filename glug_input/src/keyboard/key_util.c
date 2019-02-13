@@ -1,5 +1,5 @@
 #include "key_util.h"
-#include <glug_input/keyboard/keys.h>
+#include <glug/input/keyboard/keys.h>
 
 void set_key_state(char *state, enum virtual_keys key, int active)
 {

@@ -1,6 +1,6 @@
 #include "../lock_util.h"
 #include "lock_defs.h"
-#include <glug_input/keyboard/locks.h>
+#include <glug/input/keyboard/locks.h>
 
 int code_from_lock(enum key_locks lock)
 {

@@ -1,5 +1,5 @@
 #include "../button_util.h"
-#include <glug_input/mouse/buttons.h>
+#include <glug/input/mouse/buttons.h>
 
 #include <HIToolbox.framework/Headers/Events.h>
 

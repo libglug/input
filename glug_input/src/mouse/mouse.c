@@ -1,6 +1,6 @@
-#include <glug_input/mouse/mouse.h>
-#include <glug_input/mouse/buttons.h>
-#include <glug_input/mouse/point_t.h>
+#include <glug/input/mouse/mouse.h>
+#include <glug/input/mouse/buttons.h>
+#include <glug/input/mouse/point_t.h>
 
 #include "mouse_plat.h"
 

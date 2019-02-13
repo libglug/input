@@ -4,9 +4,9 @@
 #include <glug/import.h>
 #include <glug/extern.h>
 
-#include <glug_input/keyboard/keys.h>
-#include <glug_input/keyboard/locks.h>
-#include <glug_input/keyboard/mods.h>
+#include <glug/input/keyboard/keys.h>
+#include <glug/input/keyboard/locks.h>
+#include <glug/input/keyboard/mods.h>
 
 GLUG_EXTERN_START
 

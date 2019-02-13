@@ -1,5 +1,5 @@
 #include "../mod_util.h"
-#include <glug_input/keyboard/mods.h>
+#include <glug/input/keyboard/mods.h>
 
 #include <HIToolbox.framework/Headers/Events.h>
 

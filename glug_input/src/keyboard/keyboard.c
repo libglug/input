@@ -1,7 +1,7 @@
-#include <glug_input/keyboard/keyboard.h>
-#include <glug_input/keyboard/keys.h>
-#include <glug_input/keyboard/mods.h>
-#include <glug_input/keyboard/locks.h>
+#include <glug/input/keyboard/keyboard.h>
+#include <glug/input/keyboard/keys.h>
+#include <glug/input/keyboard/mods.h>
+#include <glug/input/keyboard/locks.h>
 
 #include "keyboard_plat.h"
 

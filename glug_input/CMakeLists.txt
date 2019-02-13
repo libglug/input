@@ -1,20 +1,21 @@
 include(${PROJECT_SOURCE_DIR}/cmake/macros/add_gluglib.cmake)
 
 set(SRC_ROOT src)
-set(INC_ROOT include/glug_input)
+set(INC_ROOT include/glug)
 
 list(
     APPEND
     COMMON_SOURCE
-    ${INC_ROOT}/keyboard.h
-    ${INC_ROOT}/keyboard/keyboard.h
-    ${INC_ROOT}/keyboard/keys.h
-    ${INC_ROOT}/keyboard/locks.h
-    ${INC_ROOT}/keyboard/mods.h
-    ${INC_ROOT}/mouse.h
-    ${INC_ROOT}/mouse/mouse.h
-    ${INC_ROOT}/mouse/buttons.h
-    ${INC_ROOT}/mouse/point_t.h
+    ${INC_ROOT}/input.h
+    ${INC_ROOT}/input/keyboard.h
+    ${INC_ROOT}/input/keyboard/keyboard.h
+    ${INC_ROOT}/input/keyboard/keys.h
+    ${INC_ROOT}/input/keyboard/locks.h
+    ${INC_ROOT}/input/keyboard/mods.h
+    ${INC_ROOT}/input/mouse.h
+    ${INC_ROOT}/input/mouse/mouse.h
+    ${INC_ROOT}/input/mouse/buttons.h
+    ${INC_ROOT}/input/mouse/point_t.h
     ${SRC_ROOT}/keyboard/keyboard_plat.h
     ${SRC_ROOT}/keyboard/key_util.h
     ${SRC_ROOT}/keyboard/lock_util.h

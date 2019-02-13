@@ -3,9 +3,9 @@
 #include "../mod_util.h"
 #include "../lock_util.h"
 
-#include <glug_input/keyboard/keys.h>
-#include <glug_input/keyboard/locks.h>
-#include <glug_input/keyboard/mods.h>
+#include <glug/input/keyboard/keys.h>
+#include <glug/input/keyboard/locks.h>
+#include <glug/input/keyboard/mods.h>
 
 #include <X11/extensions/XInput2.h>
 

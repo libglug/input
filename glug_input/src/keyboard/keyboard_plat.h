@@ -1,9 +1,9 @@
 #ifndef GLUG_KEYBOARD_PLAT_H
 #define GLUG_KEYBOARD_PLAT_H
 
-#include <glug_input/keyboard/keys.h>
-#include <glug_input/keyboard/locks.h>
-#include <glug_input/keyboard/mods.h>
+#include <glug/input/keyboard/keys.h>
+#include <glug/input/keyboard/locks.h>
+#include <glug/input/keyboard/mods.h>
 
 int is_key_pressed(enum virtual_keys key);
 void key_state(char *state);

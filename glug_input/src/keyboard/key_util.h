@@ -1,7 +1,7 @@
 #ifndef glug_vk_UTIL_H
 #define glug_vk_UTIL_H
 
-#include <glug_input/keyboard/keys.h>
+#include <glug/input/keyboard/keys.h>
 
 int       code_from_key(enum virtual_keys key);
 enum virtual_keys key_from_code(int key);

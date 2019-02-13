@@ -4,8 +4,8 @@
 #include <glug/import.h>
 #include <glug/extern.h>
 
-#include <glug_input/mouse/buttons.h>
-#include <glug_input/mouse/point_t.h>
+#include <glug/input/mouse/buttons.h>
+#include <glug/input/mouse/point_t.h>
 
 GLUG_EXTERN_START
 
