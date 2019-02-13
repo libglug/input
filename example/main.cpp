@@ -13,7 +13,7 @@ int main(int, char *[])
     cout << "are left and right pressed? " << glug_are_buttons_pressed(lr) << endl;
     cout << "are only left and right pressed? " << glug_only_buttons_pressed(lr) << endl;
 
-    point mouse_pos = glug_position();
+    glug_point_t mouse_pos = glug_position();
     cout << "mouse: " << mouse_pos.x << "x" << mouse_pos.y << endl;
 
     cout << "is right shift pressed? " << glug_is_key_pressed(glug_key_shift_r) << endl;

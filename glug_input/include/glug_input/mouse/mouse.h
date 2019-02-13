@@ -5,20 +5,18 @@
 #include <glug_input/extern.h>
 
 #include <glug_input/mouse/buttons.h>
-#include <glug_input/mouse/point.h>
+#include <glug_input/mouse/point_t.h>
 
 GLUG_EXTERN_START
 
-int          INPUT_LIB_API glug_is_button_pressed(enum buttons buttons);
-int          INPUT_LIB_API glug_are_buttons_pressed(enum buttons buttons);
-int          INPUT_LIB_API glug_only_buttons_pressed(enum buttons buttons);
+INPUT_LIB_API int                 glug_is_button_pressed(enum buttons buttons);
+INPUT_LIB_API int                 glug_are_buttons_pressed(enum buttons buttons);
+INPUT_LIB_API int                 glug_only_buttons_pressed(enum buttons buttons);
+INPUT_LIB_API enum buttons        glug_button_state();
 
-enum buttons INPUT_LIB_API glug_button_state();
-
-struct point INPUT_LIB_API glug_position();
-
-void         INPUT_LIB_API glug_move(const struct point *delta);
-void         INPUT_LIB_API glug_warp(const struct point *new_pos);
+INPUT_LIB_API struct glug_point_t glug_position();
+INPUT_LIB_API void                glug_move(const struct glug_point_t *delta);
+INPUT_LIB_API void                glug_warp(const struct glug_point_t *new_pos);
 
 GLUG_EXTERN_END
 

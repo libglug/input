@@ -1,6 +1,6 @@
 #include <glug_input/mouse/mouse.h>
 #include <glug_input/mouse/buttons.h>
-#include <glug_input/mouse/point.h>
+#include <glug_input/mouse/point_t.h>
 
 #include "mouse_plat.h"
 
@@ -24,17 +24,17 @@ enum buttons glug_button_state()
     return button_state();
 }
 
-struct point glug_position()
+struct glug_point_t glug_position()
 {
     return position();
 }
 
-void glug_move(const struct point *delta)
+void glug_move(const struct glug_point_t *delta)
 {
     move(delta);
 }
 
-void glug_warp(const struct point *new_pos)
+void glug_warp(const struct glug_point_t *new_pos)
 {
     warp(new_pos);
 }

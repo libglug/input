@@ -2,7 +2,7 @@
 #include "../button_util.h"
 
 #include <glug_input/mouse/buttons.h>
-#include <glug_input/mouse/point.h>
+#include <glug_input/mouse/point_t.h>
 
 #include <X11/extensions/XInput2.h>
 
@@ -34,7 +34,7 @@ static Window root_window()
     return xroot_window;
 }
 
-static int xmouse_state(enum buttons *, struct point *);
+static int xmouse_state(enum buttons *, struct glug_point_t *);
 static enum buttons xmouse_buttons(XIButtonState *button_mask);
 
 int is_button_pressed(enum buttons button)
@@ -49,26 +49,26 @@ enum buttons button_state()
     return state;
 }
 
-struct point position()
+struct glug_point_t position()
 {
-    struct point mouse_pt = {0, 0};
+    struct glug_point_t mouse_pt = {0, 0};
     xmouse_state(NULL, &mouse_pt);
     return mouse_pt;
 }
 
-void move(const struct point *delta)
+void move(const struct glug_point_t *delta)
 {
     XWarpPointer(get_display(), None, None, 0, 0, 0, 0, delta->x, delta->y);
     XFlush(get_display());
 }
 
-void warp(const struct point *new_pos)
+void warp(const struct glug_point_t *new_pos)
 {
     XWarpPointer(get_display(), None, root_window(), 0, 0, 0, 0, new_pos->x, new_pos->y);
     XFlush(get_display());
 }
 
-static int xmouse_state(enum buttons *button_state, struct point *pos)
+static int xmouse_state(enum buttons *button_state, struct glug_point_t *pos)
 {
     static double temp;
     static Window temp_win;

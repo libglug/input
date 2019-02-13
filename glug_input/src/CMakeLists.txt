@@ -18,7 +18,7 @@ set(INPUT_HEADERS
     ${INPUT_INC_ROOT}/mouse.h
     ${INPUT_INC_ROOT}/mouse/mouse.h
     ${INPUT_INC_ROOT}/mouse/buttons.h
-    ${INPUT_INC_ROOT}/mouse/point.h
+    ${INPUT_INC_ROOT}/mouse/point_t.h
 )
 
 set(INPUT_SOURCES

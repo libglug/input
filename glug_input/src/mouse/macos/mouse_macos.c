@@ -2,7 +2,7 @@
 #include "../button_util.h"
 
 #include <glug_input/mouse/buttons.h>
-#include <glug_input/mouse/point.h>
+#include <glug_input/mouse/point_t.h>
 
 #include <CoreGraphics/CGEventSource.h>
 #include <CoreGraphics/CGEvent.h>
@@ -24,11 +24,11 @@ enum buttons button_state()
     return btn_state;
 }
 
-struct point position()
+struct glug_point_t position()
 {
     CGEventRef event = CGEventCreate(nil);
     CGPoint cursor = CGEventGetLocation(event);
-    struct point p;
+    struct glug_point_t p;
     CFRelease(event);
 
     p.x = (int)cursor.x;
@@ -37,16 +37,16 @@ struct point position()
     return p;
 }
 
-void move(const struct point *delta)
+void move(const struct glug_point_t *delta)
 {
-    struct point curr = position();
+    struct glug_point_t curr = position();
     curr.x += delta->x;
     curr.y += delta->y;
 
     warp(&curr);
 }
 
-void warp(const struct point *new_pos)
+void warp(const struct glug_point_t *new_pos)
 {
     CGPoint pos = {
                     (CGFloat)new_pos->x,
