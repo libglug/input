@@ -9,9 +9,9 @@
 
 GLUG_EXTERN_START
 
-INPUT_LIB_API int                 glug_mouse_is_pressed(enum buttons buttons);
-INPUT_LIB_API int                 glug_mouse_are_pressed(enum buttons buttons);
-INPUT_LIB_API enum buttons        glug_mouse_button_state();
+INPUT_LIB_API int                 glug_mouse_is_pressed(enum mouse_buttons buttons);
+INPUT_LIB_API int                 glug_mouse_are_pressed(enum mouse_buttons buttons);
+INPUT_LIB_API enum mouse_buttons  glug_mouse_button_state();
 
 INPUT_LIB_API struct glug_point_t glug_mouse_position();
 INPUT_LIB_API void                glug_mouse_move(const struct glug_point_t *delta);

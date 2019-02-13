@@ -6,18 +6,18 @@
 
 #include <Windows.h>
 
-int is_button_pressed(enum buttons button)
+int is_button_pressed(enum mouse_buttons button)
 {
     static unsigned short mask = 1 << 15;
 
     return (GetAsyncKeyState(code_from_button(button)) & mask) != 0;
 }
 
-enum buttons button_state()
+enum mouse_buttons button_state()
 {
-    enum buttons btn, btn_state = glug_btn_none;
+    enum mouse_buttons btn, btn_state = glug_mb_none;
 
-    for (btn = glug_btn_none + 1; btn < glug_btn_unknown; btn <<= 1)
+    for (btn = glug_mb_none + 1; btn < glug_mb_unknown; btn <<= 1)
         if (is_button_pressed(btn))
             btn_state |= btn;
 

@@ -5,7 +5,7 @@
 
 #include "keyboard_plat.h"
 
-int glug_key_is_pressed(enum keys key)
+int glug_key_is_pressed(enum virtual_keys key)
 {
     return is_key_pressed(key);
 }
@@ -17,32 +17,32 @@ struct keystate glug_key_state()
     return k;
 }
 
-int glug_key_is_mod_active(enum mods mod)
+int glug_key_is_mod_active(enum key_mods mod)
 {
     return is_mod_pressed(mod);
 }
 
-int glug_key_are_mods_active(enum mods mod)
+int glug_key_are_mods_active(enum key_mods mods)
 {
-    return (mod_state() & mod) == mod;
+    return (mod_state() & mods) == mods;
 }
 
-enum mods glug_key_mod_state()
+enum key_mods glug_key_mod_state()
 {
     return mod_state();
 }
 
-int glug_key_is_lock_toggled(enum locks lock)
+int glug_key_is_lock_toggled(enum key_locks lock)
 {
     return is_lock_toggled(lock);
 }
 
-int glug_key_are_locks_toggled(enum locks locks)
+int glug_key_are_locks_toggled(enum key_locks locks)
 {
     return (lock_state() & locks) == locks;
 }
 
-enum locks glug_key_lock_state()
+enum key_locks glug_key_lock_state()
 {
     return lock_state();
 }

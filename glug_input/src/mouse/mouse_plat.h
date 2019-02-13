@@ -4,8 +4,8 @@
 #include <glug_input/mouse/buttons.h>
 #include <glug_input/mouse/point_t.h>
 
-int is_button_pressed(enum buttons buttons);
-enum buttons button_state();
+int is_button_pressed(enum mouse_buttons buttons);
+enum mouse_buttons button_state();
 
 struct glug_point_t position();
 

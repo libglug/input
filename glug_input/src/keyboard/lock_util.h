@@ -1,9 +1,9 @@
-#ifndef GLUG_LOCK_UTIL_H
-#define GLUG_LOCK_UTIL_H
+#ifndef glug_kl_UTIL_H
+#define glug_kl_UTIL_H
 
 #include <glug_input/keyboard/locks.h>
 
-int        code_from_lock(enum locks lock);
-enum locks lock_from_code(int lock);
+int        code_from_lock(enum key_locks lock);
+enum key_locks lock_from_code(int lock);
 
-#endif // GLUG_LOCK_UTIL_H
+#endif // glug_kl_UTIL_H

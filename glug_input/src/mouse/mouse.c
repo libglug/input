@@ -4,17 +4,17 @@
 
 #include "mouse_plat.h"
 
-int glug_mouse_is_pressed(enum buttons button)
+int glug_mouse_is_pressed(enum mouse_buttons button)
 {
     return is_button_pressed(button);
 }
 
-int glug_mouse_are_pressed(enum buttons buttons)
+int glug_mouse_are_pressed(enum mouse_buttons buttons)
 {
     return (button_state() & buttons) == buttons;
 }
 
-enum buttons glug_mouse_button_state()
+enum mouse_buttons glug_mouse_button_state()
 {
     return button_state();
 }

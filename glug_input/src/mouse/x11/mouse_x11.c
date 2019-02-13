@@ -34,17 +34,17 @@ static Window root_window()
     return xroot_window;
 }
 
-static int xmouse_state(enum buttons *, struct glug_point_t *);
-static enum buttons xmouse_buttons(XIButtonState *button_mask);
+static int xmouse_state(enum mouse_buttons *, struct glug_point_t *);
+static enum mouse_buttons xmouse_buttons(XIButtonState *button_mask);
 
-int is_button_pressed(enum buttons button)
+int is_button_pressed(enum mouse_buttons button)
 {
     return !!(button & button_state());
 }
 
-enum buttons button_state()
+enum mouse_buttons button_state()
 {
-    enum buttons state = glug_btn_none;
+    enum mouse_buttons state = glug_mb_none;
     xmouse_state(&state, NULL);
     return state;
 }
@@ -68,7 +68,7 @@ void warp(const struct glug_point_t *new_pos)
     XFlush(get_display());
 }
 
-static int xmouse_state(enum buttons *button_state, struct glug_point_t *pos)
+static int xmouse_state(enum mouse_buttons *button_state, struct glug_point_t *pos)
 {
     static double temp;
     static Window temp_win;
@@ -103,15 +103,15 @@ static int xmouse_state(enum buttons *button_state, struct glug_point_t *pos)
     return count == 0;
 }
 
-enum buttons xmouse_buttons(XIButtonState *button_mask)
+enum mouse_buttons xmouse_buttons(XIButtonState *button_mask)
 {
     int xbuttons = 0;
-    enum buttons btn, btn_state = glug_btn_none;
+    enum mouse_buttons btn, btn_state = glug_mb_none;
 
     for (int i = button_mask->mask_len; i--;)
         xbuttons |= button_mask->mask[i] << (i * 8);
 
-    for (btn = glug_btn_none + 1; btn < glug_btn_unknown; btn <<= 1)
+    for (btn = glug_mb_none + 1; btn < glug_mb_unknown; btn <<= 1)
         if (code_from_button(btn) & xbuttons)
             btn_state |= btn;
 

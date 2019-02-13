@@ -1,9 +1,9 @@
-#ifndef GLUG_MOD_UTIL_H
-#define GLUG_MOD_UTIL_H
+#ifndef glug_km_UTIL_H
+#define glug_km_UTIL_H
 
 #include <glug_input/keyboard/mods.h>
 
-int       code_from_mod(enum mods mod);
-enum mods mod_from_code(int mod);
+int       code_from_mod(enum key_mods mod);
+enum key_mods mod_from_code(int mod);
 
-#endif // GLUG_MOD_UTIL_H
+#endif // glug_km_UTIL_H
