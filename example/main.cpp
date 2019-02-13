@@ -17,7 +17,7 @@ int main(int, char *[])
     cout << "mouse: " << mouse_pos.x << "x" << mouse_pos.y << endl;
 
     cout << "is right shift pressed? " << glug_key_is_pressed(glug_vk_shift_r) << endl;
-    cout << "current active keyboard modifiers: " << static_cast<int>(glug_key_mod_state()) << endl;
+    cout << "current active keyboard modifiers: " << glug_key_mod_state() << endl;
     cout << "is caps lock active? " << glug_key_is_lock_toggled(glug_kl_caps) << endl;
 
     keystate k = glug_key_state();
