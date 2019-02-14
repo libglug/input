@@ -1,4 +1,12 @@
-include(${PROJECT_SOURCE_DIR}/cmake/macros/add_gluglib.cmake)
+cmake_minimum_required(VERSION 3.0)
+
+set(VER_MAJOR 1)
+set(VER_MINOR 0)
+set(VER_PATCH 0)
+project(glug_input VERSION ${VER_MAJOR}.${VER_MINOR}.${VER_PATCH})
+include(cmake/add_gluglib.cmake)
+
+option(BUILD_STATIC "Build as a static library instead of shared" "OFF")
 
 set(SRC_ROOT src)
 set(INC_ROOT include/glug)
@@ -75,30 +83,69 @@ list(
     ${X11_MOUSE_ROOT}/button_x11.c
 )
 
-# find dependencies
-find_library(APPLE_APPKIT AppKit)
-
-set(GLUG_TARGET_NAME ${CMAKE_PROJECT_NAME})
 add_gluglib(
-    TARGET_NAME ${GLUG_TARGET_NAME}
+    TARGET_NAME ${CMAKE_PROJECT_NAME}
+    STATIC_BUILD ${BUILD_STATIC}
     WIN32_SOURCE ${WIN32_SOURCE}
     MACOS_SOURCE ${MACOS_SOURCE}
     LINUX_SOURCE ${LINUX_SOURCE}
     WIN32_LIBS
-    MACOS_LIBS ${APPLE_APPKIT}
+    MACOS_LIBS AppKit
     LINUX_LIBS X11 Xi
 )
+
 target_include_directories(
-    ${GLUG_TARGET_NAME}
-    PRIVATE "/System/Library/Frameworks/Carbon.framework/Frameworks")
+    ${CMAKE_PROJECT_NAME}
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/common_headers/include>
+    INTERFACE
+        $<INSTALL_INTERFACE:include>    
+    PRIVATE
+        "/System/Library/Frameworks/Carbon.framework/Frameworks"
+)
 
 # install the library
 install(
-    TARGETS ${GLUG_TARGET_NAME}
-    DESTINATION ${GLUG_DIST_LIBR_DIR}
+    TARGETS
+        ${CMAKE_PROJECT_NAME}
+    EXPORT
+        Find${CMAKE_PROJECT_NAME}
+    DESTINATION
+        lib
 )
 
+#install the lib's headers
 install(
-    TARGETS ${GLUG_TARGET_NAME}
-    DESTINATION ${GLUG_DIST_XMPL_DIR}
+    DIRECTORY
+        include/
+    DESTINATION
+        include
+)
+
+# install the common_headers
+install(
+    DIRECTORY
+        common_headers/include/
+    DESTINATION
+        include
+    FILES_MATCHING PATTERN
+        "*.h"
+)
+
+# export the package to be included in other projects
+export(PACKAGE ${CMAKE_PROJECT_NAME})
+export(
+    TARGETS
+        ${CMAKE_PROJECT_NAME}
+    FILE
+        ${CMAKE_PROJECT_NAME}-config.cmake
+)
+
+# install export file
+install(
+    EXPORT
+        Find${CMAKE_PROJECT_NAME}
+    DESTINATION
+        cmake
 )
